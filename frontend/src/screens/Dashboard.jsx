@@ -48,7 +48,7 @@ const Dashboard = () => {
     <div className="bg-main">
       <div className="flex flex-col justify-between items-center h-[90vh]">
         <div className="flex flex-col justify-between items-center gap-5 mt-10">
-          <img src="/header.png" className="w-[30vw]" />
+        <img src="/header.svg" className="w-[25vw]" />
           <div className="flex flex-row justify-center items-center gap-16">
             <div>
               <div className="flex flex-col justify-between items-center gap-10">
@@ -89,15 +89,15 @@ const Dashboard = () => {
                 size="lg"
                 onClick={() => navigate("/")}
               >
-                <h1 className="text-white text-xl font-semibold">
+                <h1 className="text-xl font-semibold">
                   Generate Analysis
                 </h1>
               </Button>
             </div>
             <div className="h-full relative">
-              <span className="h-full w-[2px] bg-[#cfcfcf] absolute"></span>
+              <span className="h-full w-[2px] bg-[#505050] absolute"></span>
               <div className="h-full font-semibold absolute translate-y-[45%] -translate-x-1/2">
-                <h1 className="text-2xl bg-white p-2">OR</h1>
+                <h1 className="text-2xl text-[#505050] bg-[#27272a] p-2">OR</h1>
               </div>
             </div>
             <div className="h-full w-[20vw] border-1 border-[#cbcbcb] rounded-2xl border-dashed flex justify-center items-center">
@@ -116,7 +116,7 @@ const Dashboard = () => {
                   className="opacity-0 absolute w-full h-full z-50"
                   accept="json"
                 />
-                <h1 className="text-[#303030] text-lg font-semibold" startContent={<UploadFileIcon/>}>Import GeoJson</h1>
+                <h1 className="text-[#efefef] text-lg font-semibold" startContent={<UploadFileIcon/>}>Import GeoJson</h1>
               </Button>
             </div>
           </div>

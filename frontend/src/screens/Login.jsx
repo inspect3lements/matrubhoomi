@@ -9,7 +9,7 @@ const Login = () => {
     <div className="bg-main">
       <div className="flex flex-col justify-between items-center h-[90vh]">
         <div className="flex flex-col justify-between items-center gap-5">
-          <img src="/header.png" className="w-[30vw]" />
+          <img src="/header.svg" className="w-[25vw]" />
           <div className="flex flex-col justify-between items-center gap-10">
             <Input
               type="text"
@@ -42,7 +42,7 @@ const Login = () => {
             size="lg"
             onClick={() => navigate("/dashboard")}
           >
-            <h1 className="text-white text-xl font-semibold">Login</h1>
+            <h1 className="text-xl font-semibold">Login</h1>
           </Button>
         </div>
         <img src="/footer.png" className="w-[28vw]" />
