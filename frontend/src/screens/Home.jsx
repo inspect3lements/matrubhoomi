@@ -52,7 +52,7 @@ const Map = ({ lng, lat, zoom }) => {
     if (!map.current) {
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
-        style: "mapbox://styles/mapbox/streets-v12",
+        style: "mapbox://styles/mapbox/outdoors-v12",
         center: [lng, lat],
         zoom: zoom,
       });
