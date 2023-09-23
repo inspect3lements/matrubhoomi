@@ -1,16 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'Inter', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f5f5f5;
-  color: #000;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.bg-main {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   min-width: 100vw;
+  background: url("./assets/bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
