@@ -67,7 +67,7 @@ const TabsComponent = ({ tabs, activeTab, setActiveTab }) => {
     setActiveTab(key);
   };
   return (
-    <div className="flex flex-col absolute top-8 left-1/2 -translate-x-2/4">
+    <div className="flex flex-col absolute top-4 left-1/2 -translate-x-2/4">
       <Tabs
         items={tabs}
         size="lg"
@@ -86,7 +86,7 @@ const TabsComponent = ({ tabs, activeTab, setActiveTab }) => {
 
 const Layers = ({ activeTab, activeLayer, setActiveLayer }) => {
   return (
-    <div className="h-[96%] w-[18%] absolute left-0 top-0 bg-[#27272a] m-4 rounded-2xl flex flex-col justify-start items-center gap-5">
+    <div className="h-[96%] w-[15%] absolute left-0 top-0 bg-[#27272a] shadow-lg m-4 rounded-2xl flex flex-col justify-start items-center gap-5">
       <img src="/nav_header.svg" className="w-[80%]" />
       <div className="w-[80%] h-[80%]">
         {menuItems[activeTab]?.map((item) => (
@@ -117,7 +117,7 @@ const Layers = ({ activeTab, activeLayer, setActiveLayer }) => {
 
 const Score = ({ scrollToReport }) => {
   return (
-    <div className="h-[96%] w-[18%] absolute right-0 top-0 bg-[#27272a] m-4 rounded-2xl flex flex-col justify-end items-center gap-5">
+    <div className="h-[96%] w-[15%] absolute right-0 top-0 bg-[#27272a] shadow-lg m-4 rounded-2xl flex flex-col justify-end items-center gap-5">
       <Button
         color="error"
         className="w-[80%] mb-10 border-2 border-[#f5a524] py-1"
