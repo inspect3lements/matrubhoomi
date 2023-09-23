@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import mapboxgl from "mapbox-gl";
 import { Tabs, Tab, Button } from "@nextui-org/react";
 
 const tabs = [
@@ -21,25 +21,32 @@ const tabs = [
   },
 ];
 
-const menuItems = {
-  "urban-plan": [
-    {
-      id: "road",
-      label: "Roads",
-    },
-    {
-      id: "airport",
-      label: "Airports",
-    },
-    {
-      id: "railways",
-      label: "Railways",
-    },
-  ],
-  infrastructure: [],
-  environment: [],
-  sustainability: [],
-};
+const navItems = [
+  {
+    id: "home",
+    label: "Home",
+  },
+  {
+    id: "analysis",
+    label: "Analysis",
+  },
+  {
+    id: "update",
+    label: "Update",
+  },
+  {
+    id: "bhoomi_chat",
+    label: "Bhoomi Chat",
+  },
+  {
+    id: "export_data",
+    label: "Export Data",
+  },
+  {
+    id: "contact_us",
+    label: "Contact Us",
+  },
+];
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZXNoYW50cml2ZWRpMjEiLCJhIjoiY2xtdzJxaTR0MHVmaTJqcXB6OG52MzYxbiJ9.u5AhJ0TqCLwiBmoix9MRnQ";
@@ -67,7 +74,7 @@ const TabsComponent = ({ tabs, activeTab, setActiveTab }) => {
     setActiveTab(key);
   };
   return (
-    <div className="flex flex-col absolute top-4 left-1/2 -translate-x-2/4">
+    <div className="flex flex-col fixed top-4 left-1/2 -translate-x-2/4">
       <Tabs
         items={tabs}
         size="lg"
@@ -84,19 +91,34 @@ const TabsComponent = ({ tabs, activeTab, setActiveTab }) => {
   );
 };
 
-const Layers = ({ activeTab, activeLayer, setActiveLayer }) => {
+const SideNav = ({ activeNav, setActiveNav, reportRef, chatRef }) => {
+  const scrollToSection = (sectionRef) => {
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <div className="h-[96%] w-[15%] absolute left-0 top-0 bg-[#27272a] shadow-lg m-4 rounded-2xl flex flex-col justify-start items-center gap-5">
-      <img src="/nav_header.svg" className="w-[80%]" />
+    <div className="h-[96%] w-[15%] fixed left-0 top-0 bg-[#27272a] shadow-lg m-4 rounded-2xl flex flex-col justify-start items-center gap-5">
+      <img src="/header.svg" className="w-[80%]" />
       <div className="w-[80%] h-[80%]">
-        {menuItems[activeTab]?.map((item) => (
+        {navItems?.map((item) => (
           <div
             className={`py-3 text-center rounded-lg  mt-4 text-xl font-medium cursor-pointer ${
-              activeLayer === item.id
+              activeNav === item.id
                 ? "bg-[#3f3f46] text-[#fff]"
                 : "bg-[#3f3f4600] text-[#707078]"
             }`}
-            onClick={() => setActiveLayer(item.id)}
+            onClick={() => {
+              setActiveNav(item.id);
+              if (item.id === "analysis") {
+                scrollToSection(reportRef);
+              } else if (item.id === "bhoomi_chat") {
+                scrollToSection(chatRef);
+              } else {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
             key={item.id}
           >
             {item.label}
@@ -105,26 +127,11 @@ const Layers = ({ activeTab, activeLayer, setActiveLayer }) => {
       </div>
       <Button
         color="error"
-        className="w-[80%] mb-10 border-1 border-[#404040] py-1"
+        className="w-[75%] mb-10 border-1 border-[#f31260]"
+        size="lg"
       >
-        <h1 className="text-white text-xl font-semibold tracking-wide">
+        <h1 className="text-[#f31260] text-xl font-semibold tracking-wide">
           Logout
-        </h1>
-      </Button>
-    </div>
-  );
-};
-
-const Score = ({ scrollToReport }) => {
-  return (
-    <div className="h-[96%] w-[15%] absolute right-0 top-0 bg-[#27272a] shadow-lg m-4 rounded-2xl flex flex-col justify-end items-center gap-5">
-      <Button
-        color="error"
-        className="w-[80%] mb-10 border-2 border-[#f5a524] py-1"
-        onClick={scrollToReport}
-      >
-        <h1 className="text-white text-xl font-semibold tracking-wide">
-          Detailed Report
         </h1>
       </Button>
     </div>
@@ -135,16 +142,35 @@ const Report = ({ reportRef }) => {
   return (
     <div
       ref={reportRef}
-      className="h-screen w-screen bg-[#27272a] flex flex-col justify-start items-center gap-5"
+      className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10"
     >
-      {/* Content of the report */}
+      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6">
+        <h1 className="text-[#efefef] text-2xl font-semibold tracking-wide mt-4 ml-4">
+          Repoort Yeah
+        </h1>
+      </div>
+    </div>
+  );
+};
+
+const BhoomiChat = ({ chatRef }) => {
+  return (
+    <div
+      ref={chatRef}
+      className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10"
+    >
+      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6">
+        <h1 className="text-[#efefef] text-2xl font-semibold tracking-wide mt-4 ml-4">
+          Chatboot Yeah
+        </h1>
+      </div>
     </div>
   );
 };
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("urban-plan");
-  const [activeLayer, setActiveLayer] = useState(null);
+  const [activeNav, setActiveNav] = useState("home");
   const [mapOptions, setMapOptions] = useState({
     lng: 76.78,
     lat: 30.73,
@@ -152,29 +178,25 @@ const Home = () => {
   });
 
   const reportRef = useRef(null);
-
-  const scrollToReport = () => {
-    if (reportRef.current) {
-      reportRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const chatRef = useRef(null);
 
   return (
-    <main className="dark">
+    <>
       <TabsComponent
         tabs={tabs}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
-      <Layers
-        activeTab={activeTab}
-        activeLayer={activeLayer}
-        setActiveLayer={setActiveLayer}
+      <SideNav
+        activeNav={activeNav}
+        setActiveNav={setActiveNav}
+        reportRef={reportRef}
+        chatRef={chatRef}
       />
-      <Score scrollToReport={scrollToReport} />
       <Map {...mapOptions} />
       <Report reportRef={reportRef} />
-    </main>
+      <BhoomiChat chatRef={chatRef} />
+    </>
   );
 };
 
