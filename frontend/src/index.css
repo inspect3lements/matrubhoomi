@@ -19,6 +19,11 @@ body {
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
   min-width: 100vw;
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 .bg-main {
