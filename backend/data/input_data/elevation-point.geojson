@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "NAME": null, "NAME_EN": null, "NATURAL": "peak", "ELE": null, "MOUNTAIN_P": null, "OSM_TYPE": "node", "OSM_ID": 1494012332 }, "geometry": { "type": "Point", "coordinates": [ 76.9799664, 30.8527951 ] } },
+{ "type": "Feature", "properties": { "NAME": "Bhursingh Mahadev", "NAME_EN": null, "NATURAL": "peak", "ELE": "1872", "MOUNTAIN_P": null, "OSM_TYPE": "node", "OSM_ID": 9441358609 }, "geometry": { "type": "Point", "coordinates": [ 77.1437066, 30.7614993 ] } },
+{ "type": "Feature", "properties": { "NAME": "Kasauli Peak", "NAME_EN": null, "NATURAL": "peak", "ELE": "1908", "MOUNTAIN_P": null, "OSM_TYPE": "node", "OSM_ID": 9441531459 }, "geometry": { "type": "Point", "coordinates": [ 76.9722321, 30.8868063 ] } },
+{ "type": "Feature", "properties": { "NAME": "Karoh Peak", "NAME_EN": null, "NATURAL": "peak", "ELE": null, "MOUNTAIN_P": null, "OSM_TYPE": "node", "OSM_ID": 9524039239 }, "geometry": { "type": "Point", "coordinates": [ 77.07762910000001, 30.74379 ] } }
+]
+}

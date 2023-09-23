@@ -1,0 +1,89 @@
+{
+  "title": "Chandigarh",
+  "established": "1 November 1966",
+  "type": "Union Territory",
+  "capital": "Chandigarh",
+  "website": "http://chandigarh.gov.in/",
+  "neighbours": ["Punjab", "Haryana"],
+  "language": ["Hindi", "Punjabi"],
+  "districts": 1,
+  "municipality": "Chandigarh Municipal Corporation",
+  "demographic": {
+    "area": 114,
+    "density": 9252,
+    "population": 1054686,
+    "sexratio": 818,
+    "literacy": 86.43,
+    "birthrate": 15.1,
+    "deathrate": 4.2,
+    "growthrate": 17.1,
+    "childsexratio": 846,
+    "fertilityrate": 2.1,
+    "infantmortality": 30,
+    "lifeexpectancy": 71.7,
+    "urbanization": 97.25,
+    "religion": {
+      "hindu": 80.78,
+      "muslim": 13.11,
+      "sikh": 4.91,
+      "christian": 0.83,
+      "buddhist": 0.11,
+      "jain": 0.18,
+      "other": 0.08
+    },
+    "workforce": {
+      "total": 527,
+      "cultivator": 0.1,
+      "agriculture": 0.1,
+      "industry": 0.1,
+      "service": 0.1
+    },
+    "poverty": {
+      "total": 21.8,
+      "rural": 20.9,
+      "urban": 22.9
+    },
+    "marital": {
+      "total": 0.1,
+      "married": 0.1,
+      "unmarried": 0.1
+    },
+    "disability": {
+      "total": 0.1,
+      "seeing": 0.1,
+      "hearing": 0.1,
+      "speech": 0.1,
+      "movement": 0.1,
+      "mental": 0.1,
+      "mentalretardation": 0.1,
+      "anyother": 0.1
+    },
+    "housing": {
+      "total": 0.1,
+      "owned": 0.1,
+      "rented": 0.1,
+      "other": 0.1
+    }
+  },
+  "geographic": {
+    "latitude": 30.74,
+    "longitude": 76.78,
+    "altitude": 321,
+    "rainfall": 1110,
+    "temperature": {
+      "january": "14.1",
+      "february": "16.5",
+      "march": "21.3",
+      "april": "27.0",
+      "may": "32.3",
+      "june": "33.6",
+      "july": "30.8",
+      "august": "29.6",
+      "september": "28.1",
+      "october": "23.0",
+      "november": "17.2",
+      "december": "13.1"
+    },
+    "climate": "Humid Subtropical"
+  }
+}
