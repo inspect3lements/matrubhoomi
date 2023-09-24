@@ -58,7 +58,7 @@ const navItems = [
   },
   {
     id: "update",
-    label: "Update",
+    label: "Update Analyzer",
   },
   {
     id: "export_data",
@@ -181,7 +181,7 @@ const TabsComponent = ({
   );
 };
 
-const SideNav = ({ activeNav, setActiveNav, reportRef, chatRef, updateRef }) => {
+const SideNav = ({ activeNav, setActiveNav, reportRef, chatRef, updateRef, exportRef, contactRef }) => {
   const scrollToSection = (sectionRef) => {
     if (sectionRef.current) {
       sectionRef.current.scrollIntoView({ behavior: "smooth" });
@@ -194,11 +194,10 @@ const SideNav = ({ activeNav, setActiveNav, reportRef, chatRef, updateRef }) => 
       <div className="w-[80%] h-[80%]">
         {navItems?.map((item) => (
           <div
-            className={`py-3 text-center rounded-lg  mt-4 text-xl font-medium cursor-pointer ${
-              activeNav === item.id
+            className={`py-3 text-center rounded-lg  mt-4 text-xl font-medium cursor-pointer ${activeNav === item.id
                 ? "bg-[#3f3f46] text-[#fff]"
                 : "bg-[#3f3f4600] text-[#707078]"
-            }`}
+              }`}
             onClick={() => {
               setActiveNav(item.id);
               if (item.id === "analysis") {
@@ -207,7 +206,11 @@ const SideNav = ({ activeNav, setActiveNav, reportRef, chatRef, updateRef }) => 
                 scrollToSection(chatRef);
               } else if (item.id === "update") {
                 scrollToSection(updateRef);
-              }else {
+              } else if (item.id === "contact_us") {
+                scrollToSection(contactRef);
+              } else if (item.id === "export_data") {
+                scrollToSection(exportRef);
+              } else {
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }
             }}
@@ -257,7 +260,7 @@ const BhoomiChat = ({ chatRef }) => {
         </h1>
         <div className="flex-1 bg-[#212123] rounded-xl"></div>
         <div className="flex gap-3">
-          <Input variant="faded" label="Message" className="text-white"/>
+          <Input variant="faded" label="Message" className="text-white" />
           <Button size="md" className="h-full">
             <ArrowForwardIosIcon />
           </Button>
@@ -312,78 +315,143 @@ const Update = ({ updateRef }) => {
       className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10"
     >
       <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6 flex flex-col gap-3 items-center">
-      <img src="/bhoomi_analyzer.png" className="w-[10vw] mt-20" />
-          <div className="flex flex-row justify-center items-center gap-16">
-            <div>
-              <div className="flex flex-col justify-between items-center gap-10">
-                <Select
-                  items={states}
-                  label="State / UT"
-                  variant="bordered"
-                  className="w-[20vw]"
-                  size="lg"
-                  isRequired
-                >
-                  {states.map((state) => (
-                    <SelectItem key={state}>{state}</SelectItem>
-                  ))}
-                </Select>
-                <Select
-                  items={states}
-                  label="City / District"
-                  variant="bordered"
-                  className="w-[20vw]"
-                  size="lg"
-                  isRequired
-                >
-                  <SelectItem key="Chandigarh">Chandigarh</SelectItem>
-                </Select>
-                <Input
-                  type="email"
-                  label="Land Parcel ID"
-                  variant="bordered"
-                  className="w-[20vw]"
-                  size="lg"
-                  isRequired
-                />
-              </div>
-              <Button
-                color="warning"
-                className="w-[20vw] mt-20"
+        <img src="/bhoomi_analyzer.png" className="w-[10vw] mt-20" />
+        <div className="flex flex-row justify-center items-center gap-16">
+          <div>
+            <div className="flex flex-col justify-between items-center gap-10">
+              <Select
+                items={states}
+                label="State / UT"
+                variant="bordered"
+                className="w-[20vw]"
                 size="lg"
-                onClick={() => navigate("/")}
+                isRequired
               >
-                <h1 className="text-xl font-semibold">
-                  Generate Analysis
-                </h1>
-              </Button>
-            </div>
-            <div className="h-full relative">
-              <span className="h-full w-[2px] absolute"></span>
-              <div className="h-full font-semibold absolute translate-y-[45%] -translate-x-1/2">
-                <h1 className="text-2xl text-[#505050] p-2">OR</h1>
-              </div>
-            </div>
-            <div className="h-full w-[20vw] border-1 border-[#cbcbcb] rounded-2xl border-dashed flex justify-center items-center">
-              <Button
-                color="default"
+                {states.map((state) => (
+                  <SelectItem key={state}>{state}</SelectItem>
+                ))}
+              </Select>
+              <Select
+                items={states}
+                label="City / District"
+                variant="bordered"
+                className="w-[20vw]"
                 size="lg"
-                type="file"
-                onClick={(e) => {
-                  if (uploaded) {
-                    navigate("/");
-                  }
-                }}
+                isRequired
               >
-                <input
-                  type="file"
-                  className="opacity-0 absolute w-full h-full z-50"
-                  accept="json"
-                />
-                <h1 className="text-[#efefef] text-lg font-semibold">Import GeoJson</h1>
-              </Button>
+                <SelectItem key="Chandigarh">Chandigarh</SelectItem>
+              </Select>
+              <Input
+                type="email"
+                label="Land Parcel ID"
+                variant="bordered"
+                className="w-[20vw]"
+                size="lg"
+                isRequired
+              />
+            </div>
+            <Button
+              color="warning"
+              className="w-[20vw] mt-20"
+              size="lg"
+              onClick={() => navigate("/")}
+            >
+              <h1 className="text-xl font-semibold">
+                Generate Analysis
+              </h1>
+            </Button>
+          </div>
+          <div className="h-full relative">
+            <span className="h-full w-[2px] absolute"></span>
+            <div className="h-full font-semibold absolute translate-y-[45%] -translate-x-1/2">
+              <h1 className="text-2xl text-[#505050] p-2">OR</h1>
             </div>
           </div>
+          <div className="h-full w-[20vw] border-1 border-[#cbcbcb] rounded-2xl border-dashed flex justify-center items-center">
+            <Button
+              color="default"
+              size="lg"
+              type="file"
+              onClick={(e) => {
+                if (uploaded) {
+                  navigate("/");
+                }
+              }}
+            >
+              <input
+                type="file"
+                className="opacity-0 absolute w-full h-full z-50"
+                accept="json"
+              />
+              <h1 className="text-[#efefef] text-lg font-semibold">Import GeoJson</h1>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ExportData = ({ exportRef }) => {
+  return (
+    <div
+      ref={exportRef}
+      className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10"
+    >
+      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6 flex flex-col gap-3 justify-center">
+        <div className="flex flex-row justify-center items-center gap-16">
+          <div className="flex flex-col items-center">
+            <div className="flex flex-col justify-between items-start gap-10">
+              <div className="mx-auto max-w-screen-sm text-start">
+                <h2 className="mb-1 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-3">Export Data</h2>
+                <p className="text-gray-500 ">Enter Your email address and get the link to download your report data</p>
+              </div>
+              <Input
+                type="email"
+                label="Enter Email"
+                variant="bordered"
+                className="w-[20vw]"
+                size="lg"
+                isRequired
+              />
+            <Button
+              color="warning"
+              className="w-[20vw] mt-5"
+              size="lg"
+              onClick={() => navigate("/")}
+            >
+              <h1 className="text-xl font-semibold">
+                Export Data
+              </h1>
+            </Button>
+            </div>
+          </div>
+          <div className="h-full w-[20vw] flex justify-center items-center">
+            <img className="w-full" width="100" height="100" src="https://img.icons8.com/3d-fluency/300/secured-letter.png" alt="globe-africa" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ContactCard = ({ contactRef }) => {
+  return (
+    <div
+      ref={contactRef}
+      className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10"
+    >
+      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6 flex flex-col gap-3 justify-center">
+        <div className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+          <img className="w-full" width="100" height="100" src="https://img.icons8.com/3d-fluency/300/globe-africa.png" alt="globe-africa" />
+          <div className="mt-4 md:mt-0">
+            <h1 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Let's create more tools and ideas that brings us together.</h1>
+            <p className="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Matrubhoomi App is one small contribution to the mission and journey of Digital India. Let's join together to come up with innovative solutions that help us achieve this goal.</p>
+            <Button size="lg" variant="shadow" color="warning">
+              Connect with us
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -402,6 +470,8 @@ const Home = () => {
   const reportRef = useRef(null);
   const chatRef = useRef(null);
   const updateRef = useRef(null);
+  const contactRef = useRef(null);
+  const exportRef = useRef(null);
 
   return (
     <>
@@ -419,11 +489,15 @@ const Home = () => {
         reportRef={reportRef}
         chatRef={chatRef}
         updateRef={updateRef}
+        exportRef={exportRef}
+        contactRef={contactRef}
       />
       <Map {...mapOptions} activeMap={activeMap} />
       <Report reportRef={reportRef} />
       <BhoomiChat chatRef={chatRef} />
       <Update updateRef={updateRef} />
+      <ExportData exportRef={exportRef} />
+      <ContactCard contactRef={contactRef} />
     </>
   );
 };
