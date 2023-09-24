@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
-import { Tabs, Tab, Button } from "@nextui-org/react";
+import { Tabs, Tab, Button, Input } from "@nextui-org/react";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const tabs = [
   {
@@ -159,10 +160,17 @@ const BhoomiChat = ({ chatRef }) => {
       ref={chatRef}
       className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10"
     >
-      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6">
+      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6 flex flex-col gap-3">
         <h1 className="text-[#efefef] text-2xl font-semibold tracking-wide mt-4 ml-4">
-          Chatboot Yeah
+          Bhoomi chat
         </h1>
+        <div className="flex-1 bg-[#212123] rounded-xl"></div>
+        <div className="flex gap-3">
+          <Input variant="faded" label="Message" className="text-white"/>
+          <Button size="md" className="h-full">
+            <ArrowForwardIosIcon />
+          </Button>
+        </div>
       </div>
     </div>
   );
