@@ -67,9 +67,18 @@ def create_ggjson_file():
     # with open('./data.ggjson', 'w') as f:
     #     json.dump(gg, f)
     return glis
+
+def area_of_ward(ward_file):
+    json_data = {}
+    ward = {}
+    with open(ward_file, 'r') as f:
+        ward = json.load(f)
+    ward_poly = Polygon(ward['features'][0]['geometry']['coordinates'])
+    ar = area(ward_poly)
+    return ar
     
 
-def get_number_of_healh_centers(ward_wise_data,ward_file, health_centers):
+def get_number_of_health_centers(ward_wise_data,ward_file, health_centers):
     json_data = {}
     ward = {}
     with open(health_centers, 'r') as f:
