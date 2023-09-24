@@ -22,7 +22,7 @@ import railways from "../assets/railway-line.json";
 import roads from "../assets/highway-line.json";
 
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import Chart from 'react-apexcharts'
+import Chart from "react-apexcharts";
 import report from "../assets/report.json";
 
 const tabs = [
@@ -232,7 +232,7 @@ const Map2 = ({ lng, lat, zoom, activeMap, height }) => {
         zoom: zoom,
       });
     }
-    
+
     if (map2.current) {
       map2.current.on("load", () => {
         maps_d.forEach(({ id, data }) => {
@@ -241,7 +241,7 @@ const Map2 = ({ lng, lat, zoom, activeMap, height }) => {
             data,
           });
         });
-        
+
         maps_d.forEach(({ id }) => {
           console.log(activeMap === id);
           map2.current.addLayer({
@@ -352,11 +352,10 @@ const SideNav = ({
       <div className="w-[80%] h-[80%]">
         {navItems?.map((item) => (
           <div
-            className={`py-3 text-center rounded-lg  mt-4 text-xl font-medium cursor-pointer ${
-              activeNav === item.id
+            className={`py-3 text-center rounded-lg  mt-4 text-xl font-medium cursor-pointer ${activeNav === item.id
                 ? "bg-[#3f3f46] text-[#fff]"
                 : "bg-[#3f3f4600] text-[#707078]"
-            }`}
+              }`}
             onClick={() => {
               setActiveNav(item.id);
               if (item.id === "analysis") {
@@ -393,28 +392,31 @@ const SideNav = ({
   );
 };
 
-const Metric =({})=>{
+const Metric = ({ }) => {
+  const randomValue = Math.floor(Math.random() * (83 - 68 + 1)) + 68;
+
   const getGradientColors = (value) => {
     if (value < 35) {
-      return ['#F3123B']; // Reddish color for values less than 35
+      return ["#F3123B"];
     } else if (value >= 35 && value <= 75) {
-      return ['#F5BD33']; // Yellowish color for values between 35 and 75
+      return ["#F5BD33"];
     } else {
-      return ['#17C964']; // Green color for values above 75
+      return ["#17C964"];
     }
   };
-  
-  const series = [85]; 
-  const gradientColors = getGradientColors(series);
+
+  const series = [randomValue];
+
+  const gradientColors = getGradientColors(randomValue);
 
   const options = {
     series: [75],
     chart: {
-      height: 350,
-      type: 'radialBar',
+      height: 150,
+      type: "radialBar",
       toolbar: {
-        show: true
-      }
+        show: true,
+      },
     },
     plotOptions: {
       radialBar: {
@@ -422,78 +424,214 @@ const Metric =({})=>{
         endAngle: 225,
         hollow: {
           margin: 0,
-          size: '70%',
-          background: '#27272a',
+          size: "70%",
+          background: "#27272a",
           image: undefined,
           imageOffsetX: 0,
           imageOffsetY: 0,
-          position: 'front',
+          position: "front",
           dropShadow: {
             enabled: true,
             top: 3,
             left: 0,
             blur: 4,
-            opacity: 0.24
-          }
+            opacity: 0.24,
+          },
         },
         track: {
-          background: '#27272a',
-          strokeWidth: '50%',
+          background: "#27272a",
+          strokeWidth: "50%",
           margin: 0,
           dropShadow: {
             enabled: false,
             top: -3,
             left: 0,
             blur: 4,
-            opacity: 0.35
-          }
+            opacity: 0.35,
+          },
         },
         dataLabels: {
           show: true,
           name: {
-            offsetY: -10,
+            offsetY: -25,
             show: true,
-            color: '#ececec',
-            fontSize: '17px'
+            color: "#ececec",
+            fontSize: "17px",
           },
           value: {
-            formatter: function(val) {
+            formatter: function (val) {
               return parseInt(val);
             },
-            color: '#fff',
-            fontSize: '36px',
+            color: "#fff",
+            fontSize: "40px",
             show: true,
+          },
+        },
+      },
+    },
+    fill: {
+      type: "solid",
+      colors: gradientColors,
+    },
+    stroke: {
+      lineCap: "round",
+    },
+    labels: ["USPI Score"],
+  };
+
+  return (
+    <div className="h-auto w-[15%] absolute right-0 bottom-2 bg-[#27272a] shadow-lg m-4 rounded-2xl flex flex-col justify-start items-center gap-5">
+      <div className="h-full w-[100%] bg-transparent rounded-lg p-4">
+        <Chart options={options} series={series} type="radialBar" />
+      </div>
+    </div>
+  );
+};
+
+
+const PieChart1 = () => {
+  const labels = ['1yr - 12yr', '1mo - 1yr', '13yr - 17yr', '18yr or older', 'Senior Citizen'];
+  const seriesData = [30, 20, 25, 15, 10]; // Sample data, adjust this as needed
+
+  const options = {
+    labels: labels,
+    chart: {
+      type: 'pie',
+      height: 350,
+      background: '#2a2a2a', // Dark background color
+    },
+    plotOptions: {
+      pie: {
+        startAngle: -90,
+        endAngle: 90,
+        expandOnClick: false,
+        donut: {
+          size: '70%',
+          labels: {
+            show: true,
+            name: {
+              fontSize: '16px',
+              color: '#ffffff', // White color for label names
+            },
+            value: {
+              fontSize: '20px',
+              color: '#ffffff', // White color for values
+            },
+            total: {
+              show: true,
+              label: 'Total',
+              formatter: function (w) {
+                return seriesData.reduce((a, b) => a + b, 0);
+              },
+              color: '#ffffff', // White color for total label
+            }
           }
         }
       }
     },
-    fill: {
-      type: 'solid',
-      colors: gradientColors,
-    },
-    stroke: {
-      lineCap: 'round'
-    },
-    labels: ['Percent'],
   };
 
-
-  return(
-    <div className="h-[56%] w-[20%] absolute right-0 top-[20%] bg-[#27272a] shadow-lg m-4 rounded-2xl flex flex-col justify-start items-center gap-5">
-       <div className="h-[350px] w-[100%] bg-transparent rounded-lg p-4">
-          <Chart options={options} series={series} type="radialBar" />
-        </div>
-      <div className="mt-4 flex flex-col items-start text-[#ececec] text-center text-lg ">
-        <p>
-          Value: 
-        </p>
-        <p>
-          Color Explanation:
-        </p>
-      </div>
+  return (
+    <div className="card p-4 w-[400px] bg-[#3a3a3a] text-white rounded-lg">
+      <Chart options={options} series={seriesData} type="pie" />
     </div>
-  )
-}
+  );
+};
+
+const PieChart2 = () => {
+  const labels = ['Male', 'Female', 'Other'];
+  const seriesData = [3000, 2005, 55,]; // Sample data, adjust this as needed
+
+  const options = {
+    labels: labels,
+    chart: {
+      type: 'pie',
+      height: 350,
+      background: '#2a2a2a', // Dark background color
+    },
+    plotOptions: {
+      pie: {
+        startAngle: -90,
+        endAngle: 90,
+        expandOnClick: false,
+        donut: {
+          size: '70%',
+          labels: {
+            show: true,
+            name: {
+              fontSize: '16px',
+              color: '#ffffff', // White color for label names
+            },
+            value: {
+              fontSize: '20px',
+              color: '#ffffff', // White color for values
+            },
+            total: {
+              show: true,
+              label: 'Total',
+              formatter: function (w) {
+                return seriesData.reduce((a, b) => a + b, 0);
+              },
+              color: '#ffffff', // White color for total label
+            }
+          }
+        }
+      }
+    },
+  };
+
+  return (
+    <div className="card p-4 w-[400px] bg-[#3a3a3a] text-white rounded-lg">
+      <Chart options={options} series={seriesData} type="pie" />
+    </div>
+  );
+};
+const PieChart3 = () => {
+  const labels = ['ELU', 'PLU'];
+  const seriesData = [3000,5000]; // Sample data, adjust this as needed
+
+  const options = {
+    labels: labels,
+    chart: {
+      type: 'pie',
+      height: 350,
+      background: '#2a2a2a', // Dark background color
+    },
+    plotOptions: {
+      pie: {
+        startAngle: -90,
+        endAngle: 90,
+        expandOnClick: false,
+        donut: {
+          size: '70%',
+          labels: {
+            show: false,
+            name: {
+              fontSize: '16px',
+              color: '#ffffff', // White color for label names
+            },
+      
+            total: {
+              show: false,
+              label: 'Total',
+              formatter: function (w) {
+                return seriesData.reduce((a, b) => a + b, 0);
+              },
+              color: '#ffffff', // White color for total label
+            }
+          }
+        }
+      }
+    },
+  };
+
+  return (
+    <div className="card p-4 w-[400px] bg-[#3a3a3a] text-white rounded-lg">
+      <Chart options={options} series={seriesData} type="pie" />
+    </div>
+  );
+};
+
 
 
 const Report = ({
@@ -526,7 +664,7 @@ const Report = ({
           <span className="text-[#fcac2c]">Chandigarh City</span>
         </h1>
         <div className="mt-10">
-          {report?.common.map((item,i) => (
+          {report?.common.map((item, i) => (
             <div className="my-10" key={i}>
               <h1 className="text-[#efefef] text-2xl font-semibold">
                 {item.title}
@@ -613,20 +751,10 @@ const Report = ({
             {report?.[activeTab][0].title} Graphs
           </h1>
           <div className="mt-4 flex justify-start items-center gap-10">
-            {report?.[activeTab][4]?.card.map((item) => (
-              <Card className="py-4 w-[325px]">
-                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-                  <p className="text-tiny uppercase font-bold">
-                    {item.subtitle}
-                  </p>
-                  <h4 className="font-bold text-large">{item.title}</h4>
-                </CardHeader>
-                <CardBody className="overflow-visible py-2 flex justify-center items-center">
-                  <img src="/chart.png" className="w-[80%]" />
-                </CardBody>
-              </Card>
-            ))}
-          </div>
+     <PieChart1 />
+      <PieChart2 />
+      <PieChart3 />
+    </div>
           <div className="my-10">
             <h1 className="text-[#efefef] text-2xl font-semibold">
               {report?.[activeTab][2].title}
@@ -652,9 +780,8 @@ const Report = ({
 const Message = ({ message, bot = false }) => {
   return (
     <div
-      className={`flex flex-col gap-2 w-full px-1 ${
-        bot ? "items-start" : "items-end"
-      }`}
+      className={`flex flex-col gap-2 w-full px-1 ${bot ? "items-start" : "items-end"
+        }`}
     >
       <div className="flex flex-col p-5 bg-[#3f3f46] w-max rounded-xl mx-4 max-w-[60%]">
         <p className="text-[#efefef] text-lg font-semibold tracking-wide flex-wrap whitespace-pre-line">
@@ -674,7 +801,9 @@ const BhoomiChat = ({ chatRef }) => {
   let [message, setMessage] = useState("");
   let [loading, setLoading] = useState(false);
   useEffect(() => {
-    scrollToBottom();
+    if (messages.length > 1 ){
+      scrollToBottom();
+    }
   }, [messages]);
   const submit = (e) => {
     e.preventDefault();
