@@ -1,12 +1,28 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
-import { Tabs, Tab, Button, Select, SelectItem, Input, Progress, Card, CardHeader, CardBody, } from "@nextui-org/react";
+import {
+  Tabs,
+  Tab,
+  Button,
+  Select,
+  SelectItem,
+  Input,
+  Progress,
+  Card,
+  CardHeader,
+  CardBody,
+} from "@nextui-org/react";
 import boundaries from "../assets/boundaries.json";
 import sectors from "../assets/sectors.json";
 import { useNavigate } from "react-router-dom";
 import wards from "../assets/wards.json";
+
+import airports from "../assets/airport-polygon.json";
+import railways from "../assets/railway-line.json";
+import roads from "../assets/highway-line.json";
+
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import Chart from 'react-apexcharts'
+import Chart from "react-apexcharts";
 import report from "../assets/report.json";
 
 const tabs = [
@@ -101,6 +117,20 @@ const maps = [
     data: wards,
   },
 ];
+const maps_d = [
+  {
+    id: "railways",
+    data: railways,
+  },
+  {
+    id: "airports",
+    data: airports,
+  },
+  {
+    id: "roads",
+    data: roads,
+  },
+];
 
 const navItems = [
   {
@@ -190,6 +220,64 @@ const Map = ({ lng, lat, zoom, activeMap, height }) => {
     <div ref={mapContainer} className={`map-container w-auto ${height}`} />
   );
 };
+const Map2 = ({ lng, lat, zoom, activeMap, height }) => {
+  const mapContainer = useRef(null);
+  const map2 = useRef(null);
+  useEffect(() => {
+    if (!map2.current) {
+      map2.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: "mapbox://styles/mapbox/outdoors-v12",
+        center: [lng, lat],
+        zoom: zoom,
+      });
+    }
+
+    if (map2.current) {
+      map2.current.on("load", () => {
+        maps_d.forEach(({ id, data }) => {
+          map2.current.addSource(id, {
+            type: "geojson",
+            data,
+          });
+        });
+
+        maps_d.forEach(({ id }) => {
+          console.log(activeMap === id);
+          map2.current.addLayer({
+            id: id + "-layer",
+            type: "fill",
+            source: id,
+            paint: {
+              "fill-color": "#fcac2c",
+              "fill-outline-color": "#000",
+              "fill-opacity": 0.5,
+            },
+            // layout: {
+            //   visibility: activeMap === id ? "visible" : "none",
+            // },
+          });
+        });
+      });
+    }
+  }, [lng, lat, zoom, activeMap]);
+
+  useEffect(() => {
+    maps.forEach(({ id }) => {
+      if (map2.current.getLayer(id + "-layer")) {
+        map2.current.setLayoutProperty(
+          id + "-layer",
+          "visibility",
+          activeMap === id ? "visible" : "none"
+        );
+      }
+    });
+  }, [activeMap]);
+
+  return (
+    <div ref={mapContainer} className={`map-container w-auto ${height}`} />
+  );
+};
 
 const TabsComponent = ({
   tabs,
@@ -242,7 +330,15 @@ const TabsComponent = ({
   );
 };
 
-const SideNav = ({ activeNav, setActiveNav, reportRef, chatRef, updateRef, exportRef, contactRef }) => {
+const SideNav = ({
+  activeNav,
+  setActiveNav,
+  reportRef,
+  chatRef,
+  updateRef,
+  exportRef,
+  contactRef,
+}) => {
   const navigate = useNavigate();
   const scrollToSection = (sectionRef) => {
     if (sectionRef.current) {
@@ -257,8 +353,8 @@ const SideNav = ({ activeNav, setActiveNav, reportRef, chatRef, updateRef, expor
         {navItems?.map((item) => (
           <div
             className={`py-3 text-center rounded-lg  mt-4 text-xl font-medium cursor-pointer ${activeNav === item.id
-              ? "bg-[#3f3f46] text-[#fff]"
-              : "bg-[#3f3f4600] text-[#707078]"
+                ? "bg-[#3f3f46] text-[#fff]"
+                : "bg-[#3f3f4600] text-[#707078]"
               }`}
             onClick={() => {
               setActiveNav(item.id);
@@ -297,27 +393,30 @@ const SideNav = ({ activeNav, setActiveNav, reportRef, chatRef, updateRef, expor
 };
 
 const Metric = ({ }) => {
+  const randomValue = Math.floor(Math.random() * (83 - 68 + 1)) + 68;
+
   const getGradientColors = (value) => {
     if (value < 35) {
-      return ['#F3123B']; // Reddish color for values less than 35
+      return ["#F3123B"];
     } else if (value >= 35 && value <= 75) {
-      return ['#007AFF']; // Yellowish color for values between 35 and 75
+      return ["#F5BD33"];
     } else {
-      return ['#17C964']; // Green color for values above 75
+      return ["#17C964"];
     }
   };
 
-  const series = [64];
-  const gradientColors = getGradientColors(series);
+  const series = [randomValue];
+
+  const gradientColors = getGradientColors(randomValue);
 
   const options = {
     series: [75],
     chart: {
-      height: 350,
-      type: 'radialBar',
+      height: 150,
+      type: "radialBar",
       toolbar: {
-        show: true
-      }
+        show: true,
+      },
     },
     plotOptions: {
       radialBar: {
@@ -325,93 +424,214 @@ const Metric = ({ }) => {
         endAngle: 225,
         hollow: {
           margin: 0,
-          size: '70%',
-          background: '#27272a',
+          size: "70%",
+          background: "#27272a",
           image: undefined,
           imageOffsetX: 0,
           imageOffsetY: 0,
-          position: 'front',
+          position: "front",
           dropShadow: {
             enabled: true,
             top: 3,
             left: 0,
             blur: 4,
-            opacity: 0.24
-          }
+            opacity: 0.24,
+          },
         },
         track: {
-          background: '#27272a',
-          strokeWidth: '50%',
+          background: "#27272a",
+          strokeWidth: "50%",
           margin: 0,
           dropShadow: {
             enabled: false,
             top: -3,
             left: 0,
             blur: 4,
-            opacity: 0.35
-          }
+            opacity: 0.35,
+          },
         },
         dataLabels: {
           show: true,
           name: {
             offsetY: -25,
             show: true,
-            color: '#ececec',
-            fontSize: '21px'
+            color: "#ececec",
+            fontSize: "17px",
           },
           value: {
             formatter: function (val) {
               return parseInt(val);
             },
-            color: '#fff',
-            fontSize: '36px',
+            color: "#fff",
+            fontSize: "40px",
             show: true,
+          },
+        },
+      },
+    },
+    fill: {
+      type: "solid",
+      colors: gradientColors,
+    },
+    stroke: {
+      lineCap: "round",
+    },
+    labels: ["USPI Score"],
+  };
+
+  return (
+    <div className="h-auto w-[15%] absolute right-0 bottom-2 bg-[#27272a] shadow-lg m-4 rounded-2xl flex flex-col justify-start items-center gap-5">
+      <div className="h-full w-[100%] bg-transparent rounded-lg p-4">
+        <Chart options={options} series={series} type="radialBar" />
+      </div>
+    </div>
+  );
+};
+
+
+const PieChart1 = () => {
+  const labels = ['1yr - 12yr', '1mo - 1yr', '13yr - 17yr', '18yr or older', 'Senior Citizen'];
+  const seriesData = [30, 20, 25, 15, 10]; // Sample data, adjust this as needed
+
+  const options = {
+    labels: labels,
+    chart: {
+      type: 'pie',
+      height: 350,
+      background: '#2a2a2a', // Dark background color
+    },
+    plotOptions: {
+      pie: {
+        startAngle: -90,
+        endAngle: 90,
+        expandOnClick: false,
+        donut: {
+          size: '70%',
+          labels: {
+            show: true,
+            name: {
+              fontSize: '16px',
+              color: '#ffffff', // White color for label names
+            },
+            value: {
+              fontSize: '20px',
+              color: '#ffffff', // White color for values
+            },
+            total: {
+              show: true,
+              label: 'Total',
+              formatter: function (w) {
+                return seriesData.reduce((a, b) => a + b, 0);
+              },
+              color: '#ffffff', // White color for total label
+            }
           }
         }
       }
     },
-    fill: {
-      type: 'gradient',
-      gradient: {
-        shade: 'dark',
-        type: 'horizontal',
-        shadeIntensity: 0.5,
-        gradientToColors: gradientColors,
-        inverseColors: true,
-        opacityFrom: 1,
-        opacityTo: 1,
-        stops: [0, 100]
-      }
-      // type: 'solid',
-      // colors: gradientColors,
-    },
-    stroke: {
-      lineCap: 'round'
-    },
-    labels: ['UPSI % '],
   };
 
   return (
-    <div className="h-[56%] w-[20%] absolute right-0 top-[20%] bg-[#27272a] shadow-lg m-4 rounded-2xl flex flex-col justify-start items-center gap-5">
-      <div className="h-[350px] w-[100%] bg-transparent rounded-lg p-4">
-        <Chart options={options} series={series} type="radialBar" />
-       
-      </div>
-      <div className="mt-4 flex flex-col items-start text-[#ececec] text-justify text-lg pt-0 p-8 overflow-y-scroll mb-4 ">
-      <p className="pt-0 mb-8 text-2xl text-bold text-[#fff]">
-        UPSI percent 
-        (Urban Planning Stability Index percent)
-        </p>
-        <p>
-          On the basis of given data and estimated and predicted value we derive a UPSI percent value based on our UPSI algorithm the more the percent the better the cycle for development could be.
-        </p>
-        <p>
-          Factors like Transport network and its connectivity to more and more public amenities, population density and footfall near specific attraction and point of contacts are recorded, recorded and based on them sperate squares are calculated, after cumulating those score we arrive to a final UPSI value for a give piece of land.
-        </p>
-      </div>
+    <div className="card p-4 w-[400px] bg-[#3a3a3a] text-white rounded-lg">
+      <Chart options={options} series={seriesData} type="pie" />
     </div>
-  )
-}
+  );
+};
+
+const PieChart2 = () => {
+  const labels = ['Male', 'Female', 'Other'];
+  const seriesData = [3000, 2005, 55,]; // Sample data, adjust this as needed
+
+  const options = {
+    labels: labels,
+    chart: {
+      type: 'pie',
+      height: 350,
+      background: '#2a2a2a', // Dark background color
+    },
+    plotOptions: {
+      pie: {
+        startAngle: -90,
+        endAngle: 90,
+        expandOnClick: false,
+        donut: {
+          size: '70%',
+          labels: {
+            show: true,
+            name: {
+              fontSize: '16px',
+              color: '#ffffff', // White color for label names
+            },
+            value: {
+              fontSize: '20px',
+              color: '#ffffff', // White color for values
+            },
+            total: {
+              show: true,
+              label: 'Total',
+              formatter: function (w) {
+                return seriesData.reduce((a, b) => a + b, 0);
+              },
+              color: '#ffffff', // White color for total label
+            }
+          }
+        }
+      }
+    },
+  };
+
+  return (
+    <div className="card p-4 w-[400px] bg-[#3a3a3a] text-white rounded-lg">
+      <Chart options={options} series={seriesData} type="pie" />
+    </div>
+  );
+};
+const PieChart3 = () => {
+  const labels = ['ELU', 'PLU'];
+  const seriesData = [3000,5000]; // Sample data, adjust this as needed
+
+  const options = {
+    labels: labels,
+    chart: {
+      type: 'pie',
+      height: 350,
+      background: '#2a2a2a', // Dark background color
+    },
+    plotOptions: {
+      pie: {
+        startAngle: -90,
+        endAngle: 90,
+        expandOnClick: false,
+        donut: {
+          size: '70%',
+          labels: {
+            show: false,
+            name: {
+              fontSize: '16px',
+              color: '#ffffff', // White color for label names
+            },
+      
+            total: {
+              show: false,
+              label: 'Total',
+              formatter: function (w) {
+                return seriesData.reduce((a, b) => a + b, 0);
+              },
+              color: '#ffffff', // White color for total label
+            }
+          }
+        }
+      }
+    },
+  };
+
+  return (
+    <div className="card p-4 w-[400px] bg-[#3a3a3a] text-white rounded-lg">
+      <Chart options={options} series={seriesData} type="pie" />
+    </div>
+  );
+};
+
 
 
 const Report = ({
@@ -438,13 +658,14 @@ const Report = ({
       className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10"
     >
       <div className="w-[80%] h-[88%] ml-[16%] mt-[4.9%] bg-[#27272a] rounded-xl overflow-y-scroll p-20">
+        {/* {loading ? } */}
         <h1 className="text-[#efefef] text-4xl font-semibold tracking-wide text-center">
           MatruBhoomi Analysis :{" "}
           <span className="text-[#fcac2c]">Chandigarh City</span>
         </h1>
         <div className="mt-10">
-          {report?.common.map((item) => (
-            <div className="my-10">
+          {report?.common.map((item, i) => (
+            <div className="my-10" key={i}>
               <h1 className="text-[#efefef] text-2xl font-semibold">
                 {item.title}
               </h1>
@@ -459,6 +680,14 @@ const Report = ({
             </h1>
             <h1 className="text-[#efefef99] text-xl font-regular text-justify mt-2">
               {report?.[activeTab][0].content}
+            </h1>
+          </div>
+          <div className="my-10">
+            <h1 className="text-[#efefef] text-2xl font-semibold">
+              {report?.[activeTab][1].title}
+            </h1>
+            <h1 className="text-[#efefef99] text-xl font-regular text-justify mt-2">
+              {report?.[activeTab][1].content}
             </h1>
           </div>
           <h1 className="text-[#efefef] text-2xl font-semibold">
@@ -477,7 +706,7 @@ const Report = ({
                 {(item) => <Tab key={item.id} title={item.label}></Tab>}
               </Tabs>
               <div className="mt-3">
-                <Map {...mapOptions} height=" h-[500px]" />
+                <Map2 {...mapOptions} activeMap={activeParam} height=" h-[500px]" />
               </div>
             </div>
             <div className="w-1/2 h-full">
@@ -521,23 +750,25 @@ const Report = ({
           <h1 className="text-[#efefef] text-2xl font-semibold">
             {report?.[activeTab][0].title} Graphs
           </h1>
-          <div className="mt-4">
-            <Card className="py-4 w-[300px]">
-              <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-                <p className="text-tiny uppercase font-bold">Infrastructure</p>
-                <h4 className="font-bold text-large">Religious Distribution</h4>
-              </CardHeader>
-              <CardBody className="overflow-visible py-2">
-
-              </CardBody>
-            </Card>
+          <div className="mt-4 flex justify-start items-center gap-10">
+     <PieChart1 />
+      <PieChart2 />
+      <PieChart3 />
+    </div>
+          <div className="my-10">
+            <h1 className="text-[#efefef] text-2xl font-semibold">
+              {report?.[activeTab][2].title}
+            </h1>
+            <h1 className="text-[#efefef99] text-xl font-regular text-justify mt-2">
+              {report?.[activeTab][2].content}
+            </h1>
           </div>
           <div className="my-10">
             <h1 className="text-[#efefef] text-2xl font-semibold">
-              {report?.[activeTab][1].title}
+              {report?.[activeTab][3].title}
             </h1>
             <h1 className="text-[#efefef99] text-xl font-regular text-justify mt-2">
-              {report?.[activeTab][1].content}
+              {report?.[activeTab][3].content}
             </h1>
           </div>
         </div>
@@ -549,10 +780,10 @@ const Report = ({
 const Message = ({ message, bot = false }) => {
   return (
     <div
-      className={`flex flex-col gap-2 w-full p-1 ${bot ? "items-start" : "items-end"
+      className={`flex flex-col gap-2 w-full px-1 ${bot ? "items-start" : "items-end"
         }`}
     >
-      <div className="flex flex-col p-5 bg-[#3f3f46] w-max rounded-lg mx-5 max-w-[60%]">
+      <div className="flex flex-col p-5 bg-[#3f3f46] w-max rounded-full mx-4 max-w-[60%]">
         <p className="text-[#efefef] text-lg font-semibold tracking-wide flex-wrap whitespace-pre-line">
           {message}
         </p>
@@ -570,7 +801,8 @@ const BhoomiChat = ({ chatRef }) => {
   let [message, setMessage] = useState("");
   let [loading, setLoading] = useState(false);
   useEffect(() => {
-    scrollToBottom();
+    if (messages.length > 1)
+      scrollToBottom();
   }, [messages]);
   const submit = (e) => {
     e.preventDefault();
@@ -603,17 +835,17 @@ const BhoomiChat = ({ chatRef }) => {
       ref={chatRef}
       className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10 overflow-hidden"
     >
-      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6">
-        <h1 className="text-[#efefef] text-2xl font-semibold tracking-wide mt-4 ml-4">
-          Bhoomi chat
+      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl p-20">
+        <h1 className="text-[#efefef] text-4xl font-semibold tracking-wide text-center">
+          Bhoomi Chat: <span className="text-[#fcac2c]">Chandigarh City</span>
         </h1>
-        <div className="flex-1 bg-[#212123] rounded-xl h-[90%] overflow-y-auto flex flex-col py-5 justify-end">
+        <div className="flex-1 rounded-xl h-[90%] overflow-y-auto flex flex-col py-5 justify-end">
           {messages.map((message, i) => (
             <Message message={message} bot={i % 2 === 0} key={i} />
           ))}
           <div ref={messagesEndRef} />
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-3 h-[60px]">
           <Input
             variant="faded"
             label="Message"
@@ -624,7 +856,7 @@ const BhoomiChat = ({ chatRef }) => {
           />
           <Button
             size="md"
-            className="h-full"
+            className="!h-full"
             onClick={(e) => {
               submit(e);
             }}
@@ -724,9 +956,7 @@ const Update = ({ updateRef }) => {
               size="lg"
               onClick={() => navigate("/")}
             >
-              <h1 className="text-xl font-semibold">
-                Generate Analysis
-              </h1>
+              <h1 className="text-xl font-semibold">Generate Analysis</h1>
             </Button>
           </div>
           <div className="h-full relative">
@@ -751,7 +981,9 @@ const Update = ({ updateRef }) => {
                 className="opacity-0 absolute w-full h-full z-50"
                 accept="json"
               />
-              <h1 className="text-[#efefef] text-lg font-semibold">Import GeoJson</h1>
+              <h1 className="text-[#efefef] text-lg font-semibold">
+                Import GeoJson
+              </h1>
             </Button>
           </div>
         </div>
@@ -771,8 +1003,13 @@ const ExportData = ({ exportRef }) => {
           <div className="flex flex-col items-center">
             <div className="flex flex-col justify-between items-start gap-10">
               <div className="mx-auto max-w-screen-sm text-start">
-                <h2 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-3">Export Data</h2>
-                <p className="text-gray-500 ">Enter Your email address and get the link to download your report data</p>
+                <h2 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-3">
+                  Export Data
+                </h2>
+                <p className="text-gray-500 ">
+                  Enter Your email address and get the link to download your
+                  report data
+                </p>
               </div>
               <Input
                 type="email"
@@ -788,14 +1025,18 @@ const ExportData = ({ exportRef }) => {
                 size="lg"
                 onClick={() => navigate("/")}
               >
-                <h1 className="text-xl font-semibold">
-                  Export Data
-                </h1>
+                <h1 className="text-xl font-semibold">Export Data</h1>
               </Button>
             </div>
           </div>
           <div className="h-full w-[20vw] flex justify-center items-center">
-            <img className="w-full" width="100" height="100" src="https://img.icons8.com/3d-fluency/300/secured-letter.png" alt="globe-africa" />
+            <img
+              className="w-full"
+              width="100"
+              height="100"
+              src="https://img.icons8.com/3d-fluency/300/secured-letter.png"
+              alt="globe-africa"
+            />
           </div>
         </div>
       </div>
@@ -809,14 +1050,31 @@ const ContactCard = ({ contactRef }) => {
       ref={contactRef}
       className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10"
     >
-      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6 flex flex-col gap-3 justify-center">
+      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6 flex flex-col justify-center">
         <div className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
-          <img className="w-full" width="100" height="100" src="https://img.icons8.com/3d-fluency/300/globe-africa.png" alt="globe-africa" />
+          <img
+            width="450"
+            height="450"
+            src="https://img.icons8.com/3d-fluency/300/globe-africa.png"
+            alt="globe-africa"
+            className="translate-x-28"
+          />
           <div className="mt-4 md:mt-0">
-            <h1 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Let's create more tools and ideas that brings us together.</h1>
-            <p className="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Matrubhoomi App is one small contribution to the mission and journey of Digital India. Let's join together to come up with innovative solutions that help us achieve this goal.</p>
-            <Button size="lg" variant="shadow" color="warning">
-              Connect with us
+            <h1 className="mb-10 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+              Let's create more tools and ideas that brings us together.
+            </h1>
+            <p className="mb-10 font-light text-gray-500 md:text-lg dark:text-gray-400">
+              Matrubhoomi App is one small contribution to the mission and
+              journey of Digital India. Let's join together to come up with
+              innovative solutions that help us achieve this goal.
+            </p>
+            <Button
+              color="warning"
+              className="w-[20vw] mt-5"
+              size="lg"
+              onClick={() => navigate("/")}
+            >
+              <h1 className="text-xl font-semibold">Connect with us</h1>
             </Button>
           </div>
         </div>
@@ -827,9 +1085,9 @@ const ContactCard = ({ contactRef }) => {
 
 const Home = () => {
   const [activeMap, setActiveMap] = useState("wards");
-  const [activeTab, setActiveTab] = useState("urban-plan");
+  const [activeTab, setActiveTab] = useState("infrastructure");
   const [activeNav, setActiveNav] = useState("home");
-  const [activeParam, setActiveParam] = useState(null);
+  const [activeParam, setActiveParam] = useState('roads');
   const [mapOptions, setMapOptions] = useState({
     lng: 76.76,
     lat: 30.735,
@@ -863,7 +1121,7 @@ const Home = () => {
       />
       <Metric />
       <Map {...mapOptions} activeMap={activeMap} height=" h-screen" />
-      {/* <Report
+      <Report
         reportRef={reportRef}
         activeTab={activeTab}
         activeParam={activeParam}
@@ -875,7 +1133,7 @@ const Home = () => {
       <BhoomiChat chatRef={chatRef} />
       <Update updateRef={updateRef} />
       <ExportData exportRef={exportRef} />
-      <ContactCard contactRef={contactRef} /> */}
+      <ContactCard contactRef={contactRef} />
     </>
   );
 };

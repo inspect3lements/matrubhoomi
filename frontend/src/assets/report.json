@@ -1,48 +1,160 @@
 {
   "common": [
     {
-      "title": "Executive Summary",
-      "content": "This exceptional report offers a captivating overview of Chandigarh's urban landscape, meticulously analyzed from the GeoJSON data provided. It elegantly unveils pivotal insights into land utilization, infrastructure, demographics, and environmental factors. Its profound purpose is to serve as an exquisite cornerstone for enlightened decision-making in the realm of urban planning and development. Within this extraordinary report, we unveil a profound panorama of Chandigarh's urban landscape, masterfully deciphered from the GeoJSON data at hand. It artfully elucidates essential facets of land use, infrastructure, demographics, and environmental elements. Its overarching mission is to furnish an impeccable foundation for astute decision-making in the dynamic sphere of urban planning and development. The essence of this remarkable report lies in its comprehensive portrayal of Chandigarh's contemporary urban tapestry, poised to become the bedrock of future urban planning and development endeavors."
+      "title": "Chandigarh Report Overview",
+      "content": "This comprehensive report provides an extensive analysis of Chandigarh's urban landscape, meticulously derived from the GeoJSON data available. It offers in-depth insights into land utilization, infrastructure, demographics, and environmental factors, serving as a foundational resource for well-informed decision-making in the field of urban planning and development."
     }
   ],
   "urban-plan": [
     {
-      "title": "Executive Summary A",
-      "content": "This outstanding report offers a compelling panorama of Chandigarh's urban landscape, meticulously interpreted from the GeoJSON data provided. It astutely unveils pivotal insights into land utilization, infrastructure, demographics, and environmental factors. Its overarching mission is to provide an impeccable foundation for informed decision-making in the dynamic field of urban planning and development."
+      "title": "Urban Infrastructure Analysis",
+      "content": "The Urban Infrastructure Analysis delves deep into Chandigarh's infrastructure, showcasing its pivotal role in shaping the city's urban environment. Chandigarh, known for its well-planned infrastructure, boasts a network of wide roads, efficient public transport, and robust utility systems. The city's transportation system comprises a well-connected road network, including wide avenues and well-maintained streets, enhancing accessibility and traffic flow. Additionally, the city boasts a comprehensive public transportation system."
     },
     {
-      "title": "Key Takeaways on Infrastructure",
-      "content": "This comprehensive report delves deep into Chandigarh's infrastructure, showcasing its critical role in shaping the city's urban landscape. From transportation networks to utility systems, it provides an in-depth analysis of key infrastructure components. By shedding light on the backbone of the city, this report aims to guide strategic decisions in urban planning and development, ensuring a sustainable and well-connected future for Chandigarh."
+      "title": "Land Utilization and Urban Development",
+      "content": "Chandigarh's land utilization and urban development are intricately connected, shaping the city's growth and sustainability. The city's master plan allocates land for various purposes, including residential, commercial, industrial, and green spaces. The residential sectors are well-planned with ample green areas and recreational facilities, ensuring a high quality of life for residents. Chandigarh's commercial sectors offer a thriving business environment, attracting investment and economic growth. The city's industrial zones are strategically located to promote industrial development while minimizing environmental impact. Moreover, Chandigarh places a strong emphasis on green spaces and parks, contributing to the city's aesthetics and ecological balance."
+    },
+    {
+      "title": "Key Takeaways and Developments",
+      "content": "Chandigarh's well-structured infrastructure and efficient transportation network contribute to its urban success. The city's balanced land utilization approach fosters a high quality of life for residents and economic growth. Green spaces and parks play a vital role in Chandigarh's aesthetics and environmental sustainability. Sustainable industrial zones help minimize environmental impact while promoting economic development."
+    },
+    {
+      "title": "Recommendations and Predictions",
+      "content": "To maintain Chandigarh's high quality of life and economic growth, continue to balance land utilization for residential, commercial, and green spaces. Invest in the preservation and expansion of green areas and parks to enhance the city's ecological balance. Promote sustainable industrial practices to further minimize environmental impact. Foster a collaborative approach among stakeholders to maintain Chandigarh's well-structured infrastructure."
+    },
+    {
+      "card": [
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        },
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        },
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        },
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        }
+      ]
     }
   ],
   "infrastructure": [
     {
-      "title": "Infrastructure Report",
-      "content": "This comprehensive report delves deep into Chandigarh's infrastructure, showcasing its critical role in shaping the city's urban landscape. From transportation networks to utility systems, it provides an in-depth analysis of key infrastructure components. By shedding light on the backbone of the city, this report aims to guide strategic decisions in urban planning and development, ensuring a sustainable and well-connected future for Chandigarh."
+      "title": "Comprehensive Infrastructure Assessment",
+      "content": "The Comprehensive Infrastructure Assessment presents an in-depth analysis of Chandigarh's infrastructure, a cornerstone of the city's urban landscape. Chandigarh's road network is extensive and well-maintained, ensuring smooth traffic flow. The city's public transportation system includes a fleet of buses that connect different parts of Chandigarh efficiently. Additionally, Chandigarh boasts a robust utility infrastructure, providing uninterrupted power and water supply to its residents."
     },
     {
-      "title": "Key Takeaways on Infrastructure",
-      "content": "This comprehensive report delves deep into Chandigarh's infrastructure, showcasing its critical role in shaping the city's urban landscape. From transportation networks to utility systems, it provides an in-depth analysis of key infrastructure components. By shedding light on the backbone of the city, this report aims to guide strategic decisions in urban planning and development, ensuring a sustainable and well-connected future for Chandigarh."
+      "title": "Sustainable Transportation Initiatives",
+      "content": "Chandigarh is at the forefront of sustainable transportation initiatives, promoting eco-friendly and efficient modes of mobility. The city has implemented a comprehensive bicycle-sharing program, encouraging residents to opt for eco-friendly transportation. Additionally, Chandigarh's public transportation system is well-equipped with CNG (compressed natural gas) buses, reducing air pollution. The city's emphasis on sustainable transportation aligns with its commitment to a greener and healthier urban environment."
+    },
+    {
+      "title": "Key Takeaways and Developments",
+      "content": "Chandigarh's well-maintained road network and public transportation system contribute to efficient urban mobility. Sustainable transportation initiatives, such as bicycle-sharing programs and CNG buses, promote eco-friendly urban living. A robust utility infrastructure ensures uninterrupted power and water supply, supporting residents' daily needs."
+    },
+    {
+      "title": "Recommendations and Predictions",
+      "content": "To ensure efficient urban mobility, continue to invest in sustainable transportation initiatives to reduce the city's carbon footprint. Expand bicycle-sharing programs and further incentivize eco-friendly modes of transportation. Maintain and upgrade the utility infrastructure to meet the growing demands of Chandigarh's residents."
+    },
+    {
+      "card": [
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        },
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        },
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        },
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        }
+      ]
     }
   ],
   "environment": [
     {
-      "title": "Executive Summary C",
-      "content": "Within this extraordinary report, we unveil a profound panorama of Chandigarh's urban landscape, masterfully deciphered from the GeoJSON data provided. It artfully elucidates essential facets of land use, infrastructure, demographics, and environmental elements. Its overarching mission is to furnish an impeccable foundation for astute decision-making in the dynamic sphere of urban planning and development."
+      "title": "Environmental Sustainability and Green Practices",
+      "content": "Environmental sustainability is at the heart of Chandigarh's urban planning efforts, promoting green practices and conservation. The city prioritizes the preservation of its green spaces and parks, ensuring a healthy and aesthetically pleasing environment for residents. Chandigarh's commitment to sustainable urban development is evident through its solid waste management practices, including recycling and waste segregation. Moreover, the city is actively involved in tree plantation drives to enhance its green cover."
     },
     {
-      "title": "Key Takeaways on Infrastructure",
-      "content": "This comprehensive report delves deep into Chandigarh's infrastructure, showcasing its critical role in shaping the city's urban landscape. From transportation networks to utility systems, it provides an in-depth analysis of key infrastructure components. By shedding light on the backbone of the city, this report aims to guide strategic decisions in urban planning and development, ensuring a sustainable and well-connected future for Chandigarh."
+      "title": "Air Quality and Pollution Control Measures",
+      "content": "Chandigarh places a strong emphasis on air quality and pollution control measures to safeguard the health and well-being of its residents. The city regularly monitors air quality through strategically placed sensors and takes prompt action to mitigate pollution levels. Chandigarh has adopted green building practices to reduce energy consumption and minimize environmental impact. Additionally, the city encourages the use of clean energy sources, such as solar power."
+    },
+    {
+      "title": "Key Takeaways and Developments",
+      "content": "Environmental sustainability in Chandigarh is promoted through green practices and conservation. Air quality monitoring and pollution control measures are essential for a clean and healthy urban environment."
+    },
+    {
+      "title": "Recommendations and Predictions",
+      "content": "To maintain environmental sustainability, continue to promote green practices, tree plantation drives, and solid waste management. Enhance air quality monitoring and pollution control measures for a cleaner and healthier urban environment. Further encourage the use of clean energy sources to reduce environmental impact."
+    },
+    {
+      "card": [
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        },
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        },
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        },
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        }
+      ]
     }
   ],
   "sustainability": [
     {
-      "title": "Executive Summary D",
-      "content": "This outstanding report offers a compelling panorama of Chandigarh's urban landscape, meticulously interpreted from the GeoJSON data provided. It astutely unveils pivotal insights into land utilization, infrastructure, demographics, and environmental factors. Its overarching mission is to provide an impeccable foundation for informed decision-making in the dynamic field of urban planning and development."
+      "title": "Environmental Sustainability and Green Practices",
+      "content": "Environmental sustainability is at the heart of Chandigarh's urban planning efforts, promoting green practices and conservation. The city prioritizes the preservation of its green spaces and parks, ensuring a healthy and aesthetically pleasing environment for residents. Chandigarh's commitment to sustainable urban development is evident through its solid waste management practices, including recycling and waste segregation. Moreover, the city is actively involved in tree plantation drives to enhance its green cover."
     },
     {
-      "title": "Key Takeaways on Infrastructure",
-      "content": "This comprehensive report delves deep into Chandigarh's infrastructure, showcasing its critical role in shaping the city's urban landscape. From transportation networks to utility systems, it provides an in-depth analysis of key infrastructure components. By shedding light on the backbone of the city, this report aims to guide strategic decisions in urban planning and development, ensuring a sustainable and well-connected future for Chandigarh."
+      "title": "Air Quality and Pollution Control Measures",
+      "content": "Chandigarh places a strong emphasis on air quality and pollution control measures to safeguard the health and well-being of its residents. The city regularly monitors air quality through strategically placed sensors and takes prompt action to mitigate pollution levels. Chandigarh has adopted green building practices to reduce energy consumption and minimize environmental impact. Additionally, the city encourages the use of clean energy sources, such as solar power."
+    },
+    {
+      "title": "Key Takeaways and Developments",
+      "content": "Environmental sustainability in Chandigarh is promoted through green practices and conservation. Air quality monitoring and pollution control measures are essential for a clean and healthy urban environment."
+    },
+    {
+      "title": "Recommendations and Predictions",
+      "content": "To maintain environmental sustainability, continue to promote green practices, tree plantation drives, and solid waste management. Enhance air quality monitoring and pollution control measures for a cleaner and healthier urban environment. Further encourage the use of clean energy sources to reduce environmental impact."
+    },
+    {
+      "card": [
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        },
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        },
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        },
+        {
+          "title": "Infrastructure Report",
+          "subtitle": "Takeaways"
+        }
+      ]
     }
   ]
 }
