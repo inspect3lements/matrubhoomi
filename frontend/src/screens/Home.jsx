@@ -1,6 +1,9 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
-import { Tabs, Tab, Button, Input } from "@nextui-org/react";
+import { Tabs, Tab, Button, Select, SelectItem, Input } from "@nextui-org/react";
+import boundaries from "../assets/boundaries.json";
+import sectors from "../assets/sectors.json";
+import wards from "../assets/wards.json";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const tabs = [
@@ -19,6 +22,24 @@ const tabs = [
   {
     id: "sustainability",
     label: "Sustainability",
+  },
+];
+
+const maps = [
+  {
+    id: "boundaries",
+    label: "Boundary Wise",
+    data: boundaries,
+  },
+  {
+    id: "sectors",
+    label: "Sector Wise",
+    data: sectors,
+  },
+  {
+    id: "wards",
+    label: "Ward Wise",
+    data: wards,
   },
 ];
 
@@ -52,7 +73,7 @@ const navItems = [
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZXNoYW50cml2ZWRpMjEiLCJhIjoiY2xtdzJxaTR0MHVmaTJqcXB6OG52MzYxbiJ9.u5AhJ0TqCLwiBmoix9MRnQ";
 
-const Map = ({ lng, lat, zoom }) => {
+const Map = ({ lng, lat, zoom, activeMap }) => {
   const mapContainer = useRef(null);
   const map = useRef(null);
 
@@ -65,17 +86,69 @@ const Map = ({ lng, lat, zoom }) => {
         zoom: zoom,
       });
     }
-  }, [lng, lat, zoom]);
+
+    if (map.current) {
+      map.current.on("load", () => {
+        maps.forEach(({ id, data }) => {
+          map.current.addSource(id, {
+            type: "geojson",
+            data,
+          });
+        });
+
+        maps.forEach(({ id }) => {
+          map.current.addLayer({
+            id: id + "-layer",
+            type: "fill",
+            source: id,
+            paint: {
+              "fill-color": "#fcac2c",
+              "fill-outline-color": "#000",
+              "fill-opacity": 0.5,
+            },
+            layout: {
+              visibility: activeMap === id ? "visible" : "none",
+            },
+          });
+        });
+      });
+    }
+  }, [lng, lat, zoom, activeMap]);
+
+  useEffect(() => {
+    maps.forEach(({ id }) => {
+      if (map.current.getLayer(id + "-layer")) {
+        map.current.setLayoutProperty(
+          id + "-layer",
+          "visibility",
+          activeMap === id ? "visible" : "none"
+        );
+      }
+    });
+  }, [activeMap]);
 
   return <div ref={mapContainer} className="map-container w-screen h-screen" />;
 };
 
-const TabsComponent = ({ tabs, activeTab, setActiveTab }) => {
+const TabsComponent = ({
+  tabs,
+  activeTab,
+  setActiveTab,
+  maps,
+  activeMap,
+  setActiveMap,
+}) => {
   const handleTabChange = (key) => {
     setActiveTab(key);
   };
+  const handleMapChange = (key) => {
+    setActiveMap(key);
+  };
   return (
-    <div className="flex flex-col fixed top-4 left-1/2 -translate-x-2/4">
+    <div className="flex justify-center items-center fixed top-4 left-1/2 -translate-x-2/4">
+      <div className="h-[52px] rounded-xl bg-[#27272a] -translate-x-20 flex justify-center items-center px-6">
+        <h1 className="text-[#afafaf] text-xl z-2">English</h1>
+      </div>
       <Tabs
         items={tabs}
         size="lg"
@@ -88,6 +161,22 @@ const TabsComponent = ({ tabs, activeTab, setActiveTab }) => {
       >
         {(item) => <Tab key={item.id} title={item.label}></Tab>}
       </Tabs>
+      <Tabs
+        items={maps}
+        size="lg"
+        color="default"
+        className="scale-125 translate-x-32"
+        radius="md"
+        selectedKey={activeMap}
+        defaultSelectedKey={"boundaries"}
+        onSelectionChange={handleMapChange}
+      >
+        {(item) => <Tab key={item.id} title={item.label} value={item.id}></Tab>}
+      </Tabs>
+
+      <div className="h-[52px] w-32 rounded-xl bg-[#27272a] translate-x-48 flex justify-center items-center px-6">
+        <h1 className="text-[#afafaf] text-xl z-2">10 Years</h1>
+      </div>
     </div>
   );
 };
@@ -147,7 +236,7 @@ const Report = ({ reportRef }) => {
     >
       <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6">
         <h1 className="text-[#efefef] text-2xl font-semibold tracking-wide mt-4 ml-4">
-          Repoort Yeah
+          Report Yeah
         </h1>
       </div>
     </div>
@@ -177,11 +266,12 @@ const BhoomiChat = ({ chatRef }) => {
 };
 
 const Home = () => {
+  const [activeMap, setActiveMap] = useState("sectors"); // Default to boundaries
   const [activeTab, setActiveTab] = useState("urban-plan");
   const [activeNav, setActiveNav] = useState("home");
   const [mapOptions, setMapOptions] = useState({
-    lng: 76.78,
-    lat: 30.73,
+    lng: 76.76,
+    lat: 30.735,
     zoom: 12,
   });
 
@@ -194,6 +284,9 @@ const Home = () => {
         tabs={tabs}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
+        maps={maps}
+        activeMap={activeMap}
+        setActiveMap={setActiveMap}
       />
       <SideNav
         activeNav={activeNav}
@@ -201,7 +294,7 @@ const Home = () => {
         reportRef={reportRef}
         chatRef={chatRef}
       />
-      <Map {...mapOptions} />
+      <Map {...mapOptions} activeMap={activeMap} />
       <Report reportRef={reportRef} />
       <BhoomiChat chatRef={chatRef} />
     </>
