@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import { Tabs, Tab, Button } from "@nextui-org/react";
+import ReportPage from "./Report";
 
 const tabs = [
   {
@@ -144,11 +145,7 @@ const Report = ({ reportRef }) => {
       ref={reportRef}
       className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10"
     >
-      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6">
-        <h1 className="text-[#efefef] text-2xl font-semibold tracking-wide mt-4 ml-4">
-          Repoort Yeah
-        </h1>
-      </div>
+      <ReportPage/>
     </div>
   );
 };
