@@ -1,10 +1,18 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
-import { Tabs, Tab, Button, Select, SelectItem, Input } from "@nextui-org/react";
+import {
+  Tabs,
+  Tab,
+  Button,
+  Select,
+  SelectItem,
+  Input,
+  CircularProgress,
+} from "@nextui-org/react";
 import boundaries from "../assets/boundaries.json";
 import sectors from "../assets/sectors.json";
 import wards from "../assets/wards.json";
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const tabs = [
   {
@@ -145,7 +153,7 @@ const TabsComponent = ({
     setActiveMap(key);
   };
   return (
-    <div className="flex justify-center items-center fixed top-4 left-1/2 -translate-x-2/4">
+    <div className="flex justify-center items-center fixed top-4 left-1/2 -translate-x-2/4 z-30">
       <div className="h-[52px] rounded-xl bg-[#27272a] -translate-x-20 flex justify-center items-center px-6">
         <h1 className="text-[#afafaf] text-xl z-2">English</h1>
       </div>
@@ -248,20 +256,96 @@ const Report = ({ reportRef }) => {
   );
 };
 
+const Message = ({ message, bot = false }) => {
+  return (
+    <div
+      className={`flex flex-col gap-2 w-full p-1 ${
+        bot ? "items-start" : "items-end"
+      }`}
+    >
+      <div className="flex flex-col p-5 bg-[#3f3f46] w-max rounded-lg mx-5 max-w-[60%]">
+        <p className="text-[#efefef] text-lg font-semibold tracking-wide flex-wrap whitespace-pre-line">
+          {message}
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const BhoomiChat = ({ chatRef }) => {
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  let [messages, setMessages] = useState(["Hello there! I am Bhoomi ChatBot"]);
+  let [message, setMessage] = useState("");
+  let [loading, setLoading] = useState(false);
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+  const submit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    if (message) {
+      setMessages([...messages, message]);
+      let mes = message;
+      setMessage("");
+      fetch("http://localhost:8000/chatbot?inp=" + mes, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Allow-Access-Control-Origin": "http://localhost:5173",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          setMessages((messages) => [...messages, res["text"]]);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
   return (
     <div
       ref={chatRef}
-      className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10"
+      className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10 overflow-hidden"
     >
-      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6 flex flex-col gap-3">
+      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6 flex flex-col gap-3 relative z-0">
+        {loading && (
+          <div className="absolute h-full w-full flex justify-center items-center">
+            <CircularProgress color="primary" size="large" />
+          </div>
+        )}
         <h1 className="text-[#efefef] text-2xl font-semibold tracking-wide mt-4 ml-4">
           Bhoomi chat
         </h1>
-        <div className="flex-1 bg-[#212123] rounded-xl"></div>
+        <div className="flex-1 bg-[#212123] rounded-xl h-[90%] overflow-y-auto flex flex-col py-5 justify-end">
+          {messages.map((message, i) => (
+            <Message message={message} bot={i % 2 === 0} key={i} />
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
         <div className="flex gap-3">
-          <Input variant="faded" label="Message" className="text-white" />
-          <Button size="md" className="h-full">
+          <Input
+            variant="faded"
+            label="Message"
+            className="text-white !text-2xl"
+            size="lg"
+            onChange={(e) => setMessage(e.target.value)}
+            value={message}
+          />
+          <Button
+            size="md"
+            className="h-full"
+            onClick={(e) => {
+              submit(e);
+            }}
+            disabled={loading}
+          >
             <ArrowForwardIosIcon />
           </Button>
         </div>
