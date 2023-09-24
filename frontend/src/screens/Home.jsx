@@ -4,6 +4,11 @@ import { Tabs, Tab, Button, Select, SelectItem, Input,Progress, Card, CardHeader
 import boundaries from "../assets/boundaries.json";
 import sectors from "../assets/sectors.json";
 import wards from "../assets/wards.json";
+
+import airports from "../assets/airport-polygon.json";
+import railways from "../assets/railway-line.json";
+import roads from "../assets/highway-line.json";
+
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import report from "../assets/report.json";
 
@@ -99,6 +104,20 @@ const maps = [
     data: wards,
   },
 ];
+const maps_d = [
+  {
+    id: "railways",
+    data: railways,
+  },
+  {
+    id: "airports",
+    data: airports,
+  },
+  {
+    id: "roads",
+    data: roads,
+  },
+];
 
 const navItems = [
   {
@@ -176,6 +195,64 @@ const Map = ({ lng, lat, zoom, activeMap, height }) => {
     maps.forEach(({ id }) => {
       if (map.current.getLayer(id + "-layer")) {
         map.current.setLayoutProperty(
+          id + "-layer",
+          "visibility",
+          activeMap === id ? "visible" : "none"
+        );
+      }
+    });
+  }, [activeMap]);
+
+  return (
+    <div ref={mapContainer} className={`map-container w-auto ${height}`} />
+  );
+};
+const Map2 = ({ lng, lat, zoom, activeMap, height }) => {
+  const mapContainer = useRef(null);
+  const map2 = useRef(null);
+  useEffect(() => {
+    if (!map2.current) {
+      map2.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: "mapbox://styles/mapbox/outdoors-v12",
+        center: [lng, lat],
+        zoom: zoom,
+      });
+    }
+    
+    if (map2.current) {
+      map2.current.on("load", () => {
+        maps_d.forEach(({ id, data }) => {
+          map2.current.addSource(id, {
+            type: "geojson",
+            data,
+          });
+        });
+        
+        maps_d.forEach(({ id }) => {
+          console.log(activeMap === id);
+          map2.current.addLayer({
+            id: id + "-layer",
+            type: "fill",
+            source: id,
+            paint: {
+              "fill-color": "#fcac2c",
+              "fill-outline-color": "#000",
+              "fill-opacity": 0.5,
+            },
+            // layout: {
+            //   visibility: activeMap === id ? "visible" : "none",
+            // },
+          });
+        });
+      });
+    }
+  }, [lng, lat, zoom, activeMap]);
+
+  useEffect(() => {
+    maps.forEach(({ id }) => {
+      if (map2.current.getLayer(id + "-layer")) {
+        map2.current.setLayoutProperty(
           id + "-layer",
           "visibility",
           activeMap === id ? "visible" : "none"
@@ -321,8 +398,8 @@ const Report = ({
           <span className="text-[#fcac2c]">Chandigarh City</span>
         </h1>
         <div className="mt-10">
-          {report?.common.map((item) => (
-            <div className="my-10">
+          {report?.common.map((item,i) => (
+            <div className="my-10" key={i}>
               <h1 className="text-[#efefef] text-2xl font-semibold">
                 {item.title}
               </h1>
@@ -355,7 +432,7 @@ const Report = ({
                 {(item) => <Tab key={item.id} title={item.label}></Tab>}
               </Tabs>
               <div className="mt-3">
-                <Map {...mapOptions} height=" h-[500px]" />
+                <Map2 {...mapOptions} activeMap={activeParam} height=" h-[500px]" />
               </div>
             </div>
             <div className="w-1/2 h-full">
@@ -449,6 +526,7 @@ const BhoomiChat = ({ chatRef }) => {
   let [message, setMessage] = useState("");
   let [loading, setLoading] = useState(false);
   useEffect(() => {
+    if(messages.length > 1)
     scrollToBottom();
   }, [messages]);
   const submit = (e) => {
@@ -708,7 +786,7 @@ const Home = () => {
   const [activeMap, setActiveMap] = useState("wards");
   const [activeTab, setActiveTab] = useState("urban-plan");
   const [activeNav, setActiveNav] = useState("home");
-  const [activeParam, setActiveParam] = useState(null);
+  const [activeParam, setActiveParam] = useState('roads');
   const [mapOptions, setMapOptions] = useState({
     lng: 76.76,
     lat: 30.735,
