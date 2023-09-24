@@ -1,14 +1,15 @@
 import json
-from turfpy.measurement import boolean_point_in_polygon, length
+from turfpy.measurement import boolean_point_in_polygon, length, area
 from geojson import Polygon, Point, LineString
 from turfpy.misc import line_intersect
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score
+import joblib
 
+# Save the trained model to a file
+model_filename = './model/rf_model.pkl'
+model = joblib.load(model_filename)
 
 def create_ggjson_file():
     data = []
@@ -177,6 +178,18 @@ def get_road_info(ward_wise_data,roads_file):
             road[property] = 1
     return ward_wise_data
 
+def get_model_prediction(ward_wise_data, ward_file):
+    json_data = {}
+    ward = {}
+    with open(ward_file, 'r') as f:
+        ward = json.load(f)
+    for i in ward['features']:
+        ward_poly = Polygon(i['geometry']['coordinates'])
+        ar = area(ward_poly)
+        input_df = pd.DataFrame([{'area':ar,	'accessibility':5}])
+        print(model.predict(input_df))
+    return ward_wise_data
+
 def create_json_file(ward_file):
     with open(ward_file, 'r') as f:
         ward = json.load(f)
@@ -315,10 +328,10 @@ if __name__ == "__main__":
     ward_data = create_json_file('./data/input_data/boundary-polygon-lvl10.json')
     create_ggjson_file()
 
-    ward_data = get_number_of_healh_centers(ward_data,'./data/input_data/boundary-polygon-lvl10.json', './data/input_data/health_care.json')
-    ward_data = get_number_of_public_transport(ward_data,'./data/input_data/boundary-polygon-lvl10.json', './data/input_data/public-transport-point.geojson')
-    ward_data = get_number_of_poi_point(ward_data,'./data/input_data/boundary-polygon-lvl10.json', './data/input_data/poi_point.geojson')
-    ward_data = get_road_info(ward_data,'./data/input_data/highway-line.geojson')
-    ward_data = air_quality(ward_data,'./data/input_data/datafile.csv')
-
+    # ward_data = get_number_of_healh_centers(ward_data,'./data/input_data/boundary-polygon-lvl10.json', './data/input_data/health_care.json')
+    # ward_data = get_number_of_public_transport(ward_data,'./data/input_data/boundary-polygon-lvl10.json', './data/input_data/public-transport-point.geojson')
+    # ward_data = get_number_of_poi_point(ward_data,'./data/input_data/boundary-polygon-lvl10.json', './data/input_data/poi_point.geojson')
+    # ward_data = get_road_info(ward_data,'./data/input_data/highway-line.geojson')
+    # ward_data = air_quality(ward_data,'./data/input_data/datafile.csv')
+    # get_model_prediction(ward_data, './data/input_data/boundary-polygon-lvl10.json')
     print(ward_data)
