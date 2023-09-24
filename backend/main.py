@@ -26,18 +26,68 @@ async def index():
     print(ward_data)
     return ward_data
 
+def generate_health_centers_report(ward_data):
+    ward_data = get_number_of_health_centers(
+        ward_data, './data/boundary-polygon-lvl10.json', './data/health_care.json')
+    LLM = Llama(model_path=r".\model\llama-2-7b-chat.ggmlv3.q8_0.bin", f16_kv=True, n_gpu_layers=1)
+    report_input = "generate a specific 800 words report called Health Centers Report with proper table values for the corresponding json data and explaining each term carefully" + json.dumps(ward_data)
+    report = LLM(report_input, max_tokens=800)  
+    report_text = report["choices"][0]["text"]
+    return report_text
+
+def generate_public_transport_report(ward_data):
+    ward_data = get_number_of_public_transport(
+        ward_data, './data/boundary-polygon-lvl10.json', './data/public-transport-point.geojson')
+    LLM = Llama(model_path=r".\model\llama-2-7b-chat.ggmlv3.q8_0.bin", f16_kv=True, n_gpu_layers=1)
+    report_input = "generate a specific 800 words report called Public Transport Report with proper table values for the corresponding json data and explaining each term carefully" + json.dumps(ward_data)
+    report = LLM(report_input, max_tokens=800)  
+    report_text = report["choices"][0]["text"]
+    return report_text
+
+def generate_poi_point_report(ward_data):
+    ward_data = get_number_of_poi_point(
+        ward_data, './data/boundary-polygon-lvl10.json', './data/poi_point.geojson')
+    LLM = Llama(model_path=r".\model\llama-2-7b-chat.ggmlv3.q8_0.bin", f16_kv=True, n_gpu_layers=1)
+    report_input = "generate a specific 800 words report called POI Point Report with proper table values for the corresponding json data and explaining each term carefully" + json.dumps(ward_data)
+    report = LLM(report_input, max_tokens=800)  
+    report_text = report["choices"][0]["text"]
+    return report_text
+
+def generate_environmental_analysis(ward_data):
+    ward_data = air_quality(ward_data, './data/datafile.csv')
+    LLM = Llama(model_path=r".\model\llama-2-7b-chat.ggmlv3.q8_0.bin", f16_kv=True, n_gpu_layers=1)
+    report_input = "generate a specific 800 words report called Environment Analysis Report with proper table values for the corresponding json data and explaining each term carefully" + json.dumps(ward_data)
+    report = LLM(report_input, max_tokens=800)  
+    report_text = report["choices"][0]["text"]
+    return report_text
 
 @app.get("/generate_report")
 async def generate_report():
     ward_data = json.dumps({})
     ward_data = create_json_file('./data/boundary-polygon-lvl10.json')
-    ward_data = air_quality(ward_data, './data/datafile.csv')
-    LLM = Llama(model_path=r".\model\llama-2-7b-chat.ggmlv3.q8_0.bin", f16_kv=True, n_gpu_layers=1)
-    report_input = "Environmental Analysis: " + json.dumps(ward_data)
-    report = LLM(report_input, max_tokens=800)
-    report_text = report["choices"][0]["text"]
 
-    return {"report": report_text}
+    health_centers_report = generate_health_centers_report(ward_data)
+    public_transport_report = generate_public_transport_report(ward_data)
+    poi_point_report = generate_poi_point_report(ward_data)
+    environmental_analysis = generate_environmental_analysis(ward_data)
+
+    # Consolidate the reports into a single report
+    consolidated_report = f"""Environmental Analysis Report:
+
+         Health Centers Report:
+         {health_centers_report}
+
+         Public Transport Report:
+         {public_transport_report}
+
+         POI Point Report:
+         {poi_point_report}
+
+         Air Quality Report:
+         {environmental_analysis}
+"""
+
+    return {"report": consolidated_report}
 
 @app.get("/chatbot")
 async def index(inp: str = ''):
