@@ -1,35 +1,84 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
-import {
-  Tabs,
-  Tab,
-  Button,
-  Select,
-  SelectItem,
-  Input,
-  CircularProgress,
-} from "@nextui-org/react";
+import { Tabs, Tab, Button, Select, SelectItem, Input,Progress, Card, CardHeader, CardBody,  } from "@nextui-org/react";
 import boundaries from "../assets/boundaries.json";
 import sectors from "../assets/sectors.json";
 import wards from "../assets/wards.json";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import report from "../assets/report.json";
 
 const tabs = [
   {
     id: "urban-plan",
     label: "Urban Plan",
+    parameters: [
+      {
+        id: "roads",
+        label: "Roads",
+      },
+      {
+        id: "airports",
+        label: "Airports",
+      },
+      {
+        id: "railways",
+        label: "Railways",
+      },
+    ],
   },
   {
     id: "infrastructure",
     label: "Infrastructure",
+    parameters: [
+      {
+        id: "roads",
+        label: "Roads",
+      },
+      {
+        id: "airports",
+        label: "Airports",
+      },
+      {
+        id: "railways",
+        label: "Railways",
+      },
+    ],
   },
   {
     id: "environment",
     label: "Environment",
+    parameters: [
+      {
+        id: "roads",
+        label: "Roads",
+      },
+      {
+        id: "airports",
+        label: "Airports",
+      },
+      {
+        id: "railways",
+        label: "Railways",
+      },
+    ],
   },
   {
     id: "sustainability",
     label: "Sustainability",
+    parameters: [
+      {
+        id: "roads",
+        label: "Roads",
+      },
+      {
+        id: "airports",
+        label: "Airports",
+      },
+      {
+        id: "railways",
+        label: "Railways",
+      },
+    ],
   },
 ];
 
@@ -81,7 +130,7 @@ const navItems = [
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZXNoYW50cml2ZWRpMjEiLCJhIjoiY2xtdzJxaTR0MHVmaTJqcXB6OG52MzYxbiJ9.u5AhJ0TqCLwiBmoix9MRnQ";
 
-const Map = ({ lng, lat, zoom, activeMap }) => {
+const Map = ({ lng, lat, zoom, activeMap, height }) => {
   const mapContainer = useRef(null);
   const map = useRef(null);
 
@@ -135,7 +184,9 @@ const Map = ({ lng, lat, zoom, activeMap }) => {
     });
   }, [activeMap]);
 
-  return <div ref={mapContainer} className="map-container w-screen h-screen" />;
+  return (
+    <div ref={mapContainer} className={`map-container w-auto ${height}`} />
+  );
 };
 
 const TabsComponent = ({
@@ -241,16 +292,133 @@ const SideNav = ({ activeNav, setActiveNav, reportRef, chatRef, updateRef, expor
   );
 };
 
-const Report = ({ reportRef }) => {
+const Report = ({
+  reportRef,
+  activeTab,
+  activeParam,
+  setActiveParam,
+  tabs,
+  mapOptions,
+  activeMap,
+}) => {
+  const randomValue = Math.floor(Math.random() * (92 - 78 + 1)) + 78;
+
+  const selectedTab = tabs.find((tab) => tab.id === activeTab);
+  const tabParameters = selectedTab?.parameters || [];
+
+  const handleTabChange = (key) => {
+    setActiveParam(key);
+  };
+
   return (
     <div
       ref={reportRef}
       className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10"
     >
-      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6">
-        <h1 className="text-[#efefef] text-2xl font-semibold tracking-wide mt-4 ml-4">
-          Report Yeah
+      <div className="w-[80%] h-[88%] ml-[16%] mt-[4.9%] bg-[#27272a] rounded-xl overflow-y-scroll p-20">
+        <h1 className="text-[#efefef] text-4xl font-semibold tracking-wide text-center">
+          MatruBhoomi Analysis :{" "}
+          <span className="text-[#fcac2c]">Chandigarh City</span>
         </h1>
+        <div className="mt-10">
+          {report?.common.map((item) => (
+            <div className="my-10">
+              <h1 className="text-[#efefef] text-2xl font-semibold">
+                {item.title}
+              </h1>
+              <h1 className="text-[#efefef99] text-xl font-regular text-justify mt-2">
+                {item.content}
+              </h1>
+            </div>
+          ))}
+          <div className="my-10">
+            <h1 className="text-[#efefef] text-2xl font-semibold">
+              {report?.[activeTab][0].title}
+            </h1>
+            <h1 className="text-[#efefef99] text-xl font-regular text-justify mt-2">
+              {report?.[activeTab][0].content}
+            </h1>
+          </div>
+          <h1 className="text-[#efefef] text-2xl font-semibold">
+            Paramteric Interactive Report
+          </h1>
+          <div className="w-full h-[600px] flex justify-center items-center gap-10 mt-4">
+            <div className="w-1/2 h-full">
+              <Tabs
+                items={tabParameters}
+                size="lg"
+                color="default"
+                radius="md"
+                selectedKey={activeParam}
+                onSelectionChange={handleTabChange}
+              >
+                {(item) => <Tab key={item.id} title={item.label}></Tab>}
+              </Tabs>
+              <div className="mt-3">
+                <Map {...mapOptions} height=" h-[500px]" />
+              </div>
+            </div>
+            <div className="w-1/2 h-full">
+              <h1 className="text-[#efefef] text-2xl font-semibold capitalize">
+                Parameter : {activeParam}
+              </h1>
+              <h1 className="text-[#efefef99] text-xl font-regular text-justify mt-3">
+                This comprehensive report delves deep into Chandigarh's
+                infrastructure, showcasing its critical role in shaping the
+                city's urban landscape. From transportation networks to utility
+                systems, it provides an in-depth analysis of key infrastructure
+                components. By shedding light on the backbone of the city, this
+                report aims to guide strategic decisions in urban planning and
+                development, ensuring a sustainable and well-connected future
+                for Chandigarh.
+              </h1>
+              <h1 className="text-[#efefef] text-2xl font-semibold mt-10">
+                Criteria and Algorithm Used
+              </h1>
+              <h1 className="text-[#efefef99] text-xl font-regular text-justify mt-3">
+                This comprehensive report delves deep into Chandigarh's
+                infrastructure, showcasing its critical role in shaping the
+                city's urban landscape. From transportation networks to utility
+                systems, it provides an in-depth analysis of key infrastructure
+                components. By shedding light on the backbone of the city, this
+                report aims to guide strategic decisions in urban planning and
+                development, ensuring a sustainable and well-connected future
+                for Chandigarh.
+              </h1>
+              <h1 className="text-[#efefef] text-2xl font-semibold mt-10">
+                Parametric Score (Algo based)
+              </h1>
+              <Progress
+                color="warning"
+                aria-label="Loading..."
+                className="mt-3"
+                value={randomValue}
+              />
+            </div>
+          </div>
+          <h1 className="text-[#efefef] text-2xl font-semibold">
+          {report?.[activeTab][0].title} Graphs 
+          </h1>
+          <div className="mt-4">
+            <Card className="py-4 w-[300px]">
+              <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+                <p className="text-tiny uppercase font-bold">Infrastructure</p>
+                <h4 className="font-bold text-large">Religious Distribution</h4>
+              </CardHeader>
+              <CardBody className="overflow-visible py-2">
+                
+              </CardBody>
+            </Card>
+          </div>
+          <div className="my-10">
+            <h1 className="text-[#efefef] text-2xl font-semibold">
+              {report?.[activeTab][1].title}
+            </h1>
+            <h1 className="text-[#efefef99] text-xl font-regular text-justify mt-2">
+              {report?.[activeTab][1].content}
+            </h1>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -314,12 +482,7 @@ const BhoomiChat = ({ chatRef }) => {
       ref={chatRef}
       className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10 overflow-hidden"
     >
-      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6 flex flex-col gap-3 relative z-0">
-        {loading && (
-          <div className="absolute h-full w-full flex justify-center items-center">
-            <CircularProgress color="primary" size="large" />
-          </div>
-        )}
+      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6">
         <h1 className="text-[#efefef] text-2xl font-semibold tracking-wide mt-4 ml-4">
           Bhoomi chat
         </h1>
@@ -487,7 +650,7 @@ const ExportData = ({ exportRef }) => {
           <div className="flex flex-col items-center">
             <div className="flex flex-col justify-between items-start gap-10">
               <div className="mx-auto max-w-screen-sm text-start">
-                <h2 className="mb-1 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-3">Export Data</h2>
+                <h2 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-3">Export Data</h2>
                 <p className="text-gray-500 ">Enter Your email address and get the link to download your report data</p>
               </div>
               <Input
@@ -542,9 +705,10 @@ const ContactCard = ({ contactRef }) => {
 };
 
 const Home = () => {
-  const [activeMap, setActiveMap] = useState("sectors"); // Default to boundaries
+  const [activeMap, setActiveMap] = useState("wards");
   const [activeTab, setActiveTab] = useState("urban-plan");
   const [activeNav, setActiveNav] = useState("home");
+  const [activeParam, setActiveParam] = useState(null);
   const [mapOptions, setMapOptions] = useState({
     lng: 76.76,
     lat: 30.735,
@@ -576,8 +740,16 @@ const Home = () => {
         exportRef={exportRef}
         contactRef={contactRef}
       />
-      <Map {...mapOptions} activeMap={activeMap} />
-      <Report reportRef={reportRef} />
+      <Map {...mapOptions} activeMap={activeMap} height=" h-screen" />
+      <Report
+        reportRef={reportRef}
+        activeTab={activeTab}
+        activeParam={activeParam}
+        setActiveParam={setActiveParam}
+        mapOptions={mapOptions}
+        activeMap={activeMap}
+        tabs={tabs}
+      />
       <BhoomiChat chatRef={chatRef} />
       <Update updateRef={updateRef} />
       <ExportData exportRef={exportRef} />
