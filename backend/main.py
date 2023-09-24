@@ -24,7 +24,20 @@ async def index():
     ward_data = get_road_info(ward_data,'./data/highway-line.geojson')
     ward_data = air_quality(ward_data,'./data/datafile.csv')
     print(ward_data)
-    return ward_data 
+    return ward_data
+
+
+@app.get("/generate_report")
+async def generate_report():
+    ward_data = json.dumps({})
+    ward_data = create_json_file('./data/boundary-polygon-lvl10.json')
+    ward_data = air_quality(ward_data, './data/datafile.csv')
+    LLM = Llama(model_path=r".\model\llama-2-7b-chat.ggmlv3.q8_0.bin", f16_kv=True, n_gpu_layers=1)
+    report_input = "Environmental Analysis: " + json.dumps(ward_data)
+    report = LLM(report_input, max_tokens=800)
+    report_text = report["choices"][0]["text"]
+
+    return {"report": report_text}
 
 @app.get("/chatbot")
 async def index(inp: str = ''):
