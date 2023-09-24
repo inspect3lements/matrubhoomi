@@ -1,6 +1,17 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
-import { Tabs, Tab, Button, Select, SelectItem, Input,Progress, Card, CardHeader, CardBody,  } from "@nextui-org/react";
+import {
+  Tabs,
+  Tab,
+  Button,
+  Select,
+  SelectItem,
+  Input,
+  Progress,
+  Card,
+  CardHeader,
+  CardBody,
+} from "@nextui-org/react";
 import boundaries from "../assets/boundaries.json";
 import sectors from "../assets/sectors.json";
 import wards from "../assets/wards.json";
@@ -240,7 +251,15 @@ const TabsComponent = ({
   );
 };
 
-const SideNav = ({ activeNav, setActiveNav, reportRef, chatRef, updateRef, exportRef, contactRef }) => {
+const SideNav = ({
+  activeNav,
+  setActiveNav,
+  reportRef,
+  chatRef,
+  updateRef,
+  exportRef,
+  contactRef,
+}) => {
   const scrollToSection = (sectionRef) => {
     if (sectionRef.current) {
       sectionRef.current.scrollIntoView({ behavior: "smooth" });
@@ -253,10 +272,11 @@ const SideNav = ({ activeNav, setActiveNav, reportRef, chatRef, updateRef, expor
       <div className="w-[80%] h-[80%]">
         {navItems?.map((item) => (
           <div
-            className={`py-3 text-center rounded-lg  mt-4 text-xl font-medium cursor-pointer ${activeNav === item.id
+            className={`py-3 text-center rounded-lg  mt-4 text-xl font-medium cursor-pointer ${
+              activeNav === item.id
                 ? "bg-[#3f3f46] text-[#fff]"
                 : "bg-[#3f3f4600] text-[#707078]"
-              }`}
+            }`}
             onClick={() => {
               setActiveNav(item.id);
               if (item.id === "analysis") {
@@ -316,6 +336,7 @@ const Report = ({
       className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10"
     >
       <div className="w-[80%] h-[88%] ml-[16%] mt-[4.9%] bg-[#27272a] rounded-xl overflow-y-scroll p-20">
+        {/* {loading ? } */}
         <h1 className="text-[#efefef] text-4xl font-semibold tracking-wide text-center">
           MatruBhoomi Analysis :{" "}
           <span className="text-[#fcac2c]">Chandigarh City</span>
@@ -337,6 +358,14 @@ const Report = ({
             </h1>
             <h1 className="text-[#efefef99] text-xl font-regular text-justify mt-2">
               {report?.[activeTab][0].content}
+            </h1>
+          </div>
+          <div className="my-10">
+            <h1 className="text-[#efefef] text-2xl font-semibold">
+              {report?.[activeTab][1].title}
+            </h1>
+            <h1 className="text-[#efefef99] text-xl font-regular text-justify mt-2">
+              {report?.[activeTab][1].content}
             </h1>
           </div>
           <h1 className="text-[#efefef] text-2xl font-semibold">
@@ -397,25 +426,37 @@ const Report = ({
             </div>
           </div>
           <h1 className="text-[#efefef] text-2xl font-semibold">
-          {report?.[activeTab][0].title} Graphs 
+            {report?.[activeTab][0].title} Graphs
           </h1>
-          <div className="mt-4">
-            <Card className="py-4 w-[300px]">
-              <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-                <p className="text-tiny uppercase font-bold">Infrastructure</p>
-                <h4 className="font-bold text-large">Religious Distribution</h4>
-              </CardHeader>
-              <CardBody className="overflow-visible py-2">
-                
-              </CardBody>
-            </Card>
+          <div className="mt-4 flex justify-start items-center gap-10">
+            {report?.[activeTab][4]?.card.map((item) => (
+              <Card className="py-4 w-[325px]">
+                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+                  <p className="text-tiny uppercase font-bold">
+                    {item.subtitle}
+                  </p>
+                  <h4 className="font-bold text-large">{item.title}</h4>
+                </CardHeader>
+                <CardBody className="overflow-visible py-2 flex justify-center items-center">
+                  <img src="/chart.png" className="w-[80%]" />
+                </CardBody>
+              </Card>
+            ))}
           </div>
           <div className="my-10">
             <h1 className="text-[#efefef] text-2xl font-semibold">
-              {report?.[activeTab][1].title}
+              {report?.[activeTab][2].title}
             </h1>
             <h1 className="text-[#efefef99] text-xl font-regular text-justify mt-2">
-              {report?.[activeTab][1].content}
+              {report?.[activeTab][2].content}
+            </h1>
+          </div>
+          <div className="my-10">
+            <h1 className="text-[#efefef] text-2xl font-semibold">
+              {report?.[activeTab][3].title}
+            </h1>
+            <h1 className="text-[#efefef99] text-xl font-regular text-justify mt-2">
+              {report?.[activeTab][3].content}
             </h1>
           </div>
         </div>
@@ -427,11 +468,11 @@ const Report = ({
 const Message = ({ message, bot = false }) => {
   return (
     <div
-      className={`flex flex-col gap-2 w-full p-1 ${
+      className={`flex flex-col gap-2 w-full px-1 ${
         bot ? "items-start" : "items-end"
       }`}
     >
-      <div className="flex flex-col p-5 bg-[#3f3f46] w-max rounded-lg mx-5 max-w-[60%]">
+      <div className="flex flex-col p-5 bg-[#3f3f46] w-max rounded-full mx-4 max-w-[60%]">
         <p className="text-[#efefef] text-lg font-semibold tracking-wide flex-wrap whitespace-pre-line">
           {message}
         </p>
@@ -482,17 +523,17 @@ const BhoomiChat = ({ chatRef }) => {
       ref={chatRef}
       className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10 overflow-hidden"
     >
-      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6">
-        <h1 className="text-[#efefef] text-2xl font-semibold tracking-wide mt-4 ml-4">
-          Bhoomi chat
+      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl p-20">
+        <h1 className="text-[#efefef] text-4xl font-semibold tracking-wide text-center">
+          Bhoomi Chat: <span className="text-[#fcac2c]">Chandigarh City</span>
         </h1>
-        <div className="flex-1 bg-[#212123] rounded-xl h-[90%] overflow-y-auto flex flex-col py-5 justify-end">
+        <div className="flex-1 rounded-xl h-[90%] overflow-y-auto flex flex-col py-5 justify-end">
           {messages.map((message, i) => (
             <Message message={message} bot={i % 2 === 0} key={i} />
           ))}
           <div ref={messagesEndRef} />
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-3 h-[60px]">
           <Input
             variant="faded"
             label="Message"
@@ -503,7 +544,7 @@ const BhoomiChat = ({ chatRef }) => {
           />
           <Button
             size="md"
-            className="h-full"
+            className="!h-full"
             onClick={(e) => {
               submit(e);
             }}
@@ -603,9 +644,7 @@ const Update = ({ updateRef }) => {
               size="lg"
               onClick={() => navigate("/")}
             >
-              <h1 className="text-xl font-semibold">
-                Generate Analysis
-              </h1>
+              <h1 className="text-xl font-semibold">Generate Analysis</h1>
             </Button>
           </div>
           <div className="h-full relative">
@@ -630,7 +669,9 @@ const Update = ({ updateRef }) => {
                 className="opacity-0 absolute w-full h-full z-50"
                 accept="json"
               />
-              <h1 className="text-[#efefef] text-lg font-semibold">Import GeoJson</h1>
+              <h1 className="text-[#efefef] text-lg font-semibold">
+                Import GeoJson
+              </h1>
             </Button>
           </div>
         </div>
@@ -650,8 +691,13 @@ const ExportData = ({ exportRef }) => {
           <div className="flex flex-col items-center">
             <div className="flex flex-col justify-between items-start gap-10">
               <div className="mx-auto max-w-screen-sm text-start">
-                <h2 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-3">Export Data</h2>
-                <p className="text-gray-500 ">Enter Your email address and get the link to download your report data</p>
+                <h2 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-3">
+                  Export Data
+                </h2>
+                <p className="text-gray-500 ">
+                  Enter Your email address and get the link to download your
+                  report data
+                </p>
               </div>
               <Input
                 type="email"
@@ -661,20 +707,24 @@ const ExportData = ({ exportRef }) => {
                 size="lg"
                 isRequired
               />
-            <Button
-              color="warning"
-              className="w-[20vw] mt-5"
-              size="lg"
-              onClick={() => navigate("/")}
-            >
-              <h1 className="text-xl font-semibold">
-                Export Data
-              </h1>
-            </Button>
+              <Button
+                color="warning"
+                className="w-[20vw] mt-5"
+                size="lg"
+                onClick={() => navigate("/")}
+              >
+                <h1 className="text-xl font-semibold">Export Data</h1>
+              </Button>
             </div>
           </div>
           <div className="h-full w-[20vw] flex justify-center items-center">
-            <img className="w-full" width="100" height="100" src="https://img.icons8.com/3d-fluency/300/secured-letter.png" alt="globe-africa" />
+            <img
+              className="w-full"
+              width="100"
+              height="100"
+              src="https://img.icons8.com/3d-fluency/300/secured-letter.png"
+              alt="globe-africa"
+            />
           </div>
         </div>
       </div>
@@ -688,14 +738,31 @@ const ContactCard = ({ contactRef }) => {
       ref={contactRef}
       className="h-screen w-screen bg-[#3f3f46] flex flex-col justify-start items-center gap-10"
     >
-      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6 flex flex-col gap-3 justify-center">
+      <div className="w-[80%] h-[89.5%] ml-[16%] mt-[4%] bg-[#27272a] rounded-xl overflow-y-scroll p-6 flex flex-col justify-center">
         <div className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
-          <img className="w-full" width="100" height="100" src="https://img.icons8.com/3d-fluency/300/globe-africa.png" alt="globe-africa" />
+          <img
+            width="450"
+            height="450"
+            src="https://img.icons8.com/3d-fluency/300/globe-africa.png"
+            alt="globe-africa"
+            className="translate-x-28"
+          />
           <div className="mt-4 md:mt-0">
-            <h1 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Let's create more tools and ideas that brings us together.</h1>
-            <p className="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Matrubhoomi App is one small contribution to the mission and journey of Digital India. Let's join together to come up with innovative solutions that help us achieve this goal.</p>
-            <Button size="lg" variant="shadow" color="warning">
-              Connect with us
+            <h1 className="mb-10 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+              Let's create more tools and ideas that brings us together.
+            </h1>
+            <p className="mb-10 font-light text-gray-500 md:text-lg dark:text-gray-400">
+              Matrubhoomi App is one small contribution to the mission and
+              journey of Digital India. Let's join together to come up with
+              innovative solutions that help us achieve this goal.
+            </p>
+            <Button
+              color="warning"
+              className="w-[20vw] mt-5"
+              size="lg"
+              onClick={() => navigate("/")}
+            >
+              <h1 className="text-xl font-semibold">Connect with us</h1>
             </Button>
           </div>
         </div>
@@ -706,7 +773,7 @@ const ContactCard = ({ contactRef }) => {
 
 const Home = () => {
   const [activeMap, setActiveMap] = useState("wards");
-  const [activeTab, setActiveTab] = useState("urban-plan");
+  const [activeTab, setActiveTab] = useState("infrastructure");
   const [activeNav, setActiveNav] = useState("home");
   const [activeParam, setActiveParam] = useState(null);
   const [mapOptions, setMapOptions] = useState({
