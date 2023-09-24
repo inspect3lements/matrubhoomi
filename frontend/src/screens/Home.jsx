@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
-import { Tabs, Tab, Button, Select, SelectItem, Input,Progress, Card, CardHeader, CardBody,  } from "@nextui-org/react";
+import { Tabs, Tab, Button, Select, SelectItem, Input, Progress, Card, CardHeader, CardBody, } from "@nextui-org/react";
 import boundaries from "../assets/boundaries.json";
 import sectors from "../assets/sectors.json";
 import { useNavigate } from "react-router-dom";
@@ -257,8 +257,8 @@ const SideNav = ({ activeNav, setActiveNav, reportRef, chatRef, updateRef, expor
         {navItems?.map((item) => (
           <div
             className={`py-3 text-center rounded-lg  mt-4 text-xl font-medium cursor-pointer ${activeNav === item.id
-                ? "bg-[#3f3f46] text-[#fff]"
-                : "bg-[#3f3f4600] text-[#707078]"
+              ? "bg-[#3f3f46] text-[#fff]"
+              : "bg-[#3f3f4600] text-[#707078]"
               }`}
             onClick={() => {
               setActiveNav(item.id);
@@ -296,18 +296,18 @@ const SideNav = ({ activeNav, setActiveNav, reportRef, chatRef, updateRef, expor
   );
 };
 
-const Metric =({})=>{
+const Metric = ({ }) => {
   const getGradientColors = (value) => {
     if (value < 35) {
       return ['#F3123B']; // Reddish color for values less than 35
     } else if (value >= 35 && value <= 75) {
-      return ['#F5BD33']; // Yellowish color for values between 35 and 75
+      return ['#007AFF']; // Yellowish color for values between 35 and 75
     } else {
       return ['#17C964']; // Green color for values above 75
     }
   };
-  
-  const series = [85]; 
+
+  const series = [64];
   const gradientColors = getGradientColors(series);
 
   const options = {
@@ -354,13 +354,13 @@ const Metric =({})=>{
         dataLabels: {
           show: true,
           name: {
-            offsetY: -10,
+            offsetY: -25,
             show: true,
             color: '#ececec',
-            fontSize: '17px'
+            fontSize: '21px'
           },
           value: {
-            formatter: function(val) {
+            formatter: function (val) {
               return parseInt(val);
             },
             color: '#fff',
@@ -371,27 +371,42 @@ const Metric =({})=>{
       }
     },
     fill: {
-      type: 'solid',
-      colors: gradientColors,
+      type: 'gradient',
+      gradient: {
+        shade: 'dark',
+        type: 'horizontal',
+        shadeIntensity: 0.5,
+        gradientToColors: gradientColors,
+        inverseColors: true,
+        opacityFrom: 1,
+        opacityTo: 1,
+        stops: [0, 100]
+      }
+      // type: 'solid',
+      // colors: gradientColors,
     },
     stroke: {
       lineCap: 'round'
     },
-    labels: ['Percent'],
+    labels: ['UPSI % '],
   };
 
-
-  return(
+  return (
     <div className="h-[56%] w-[20%] absolute right-0 top-[20%] bg-[#27272a] shadow-lg m-4 rounded-2xl flex flex-col justify-start items-center gap-5">
-       <div className="h-[350px] w-[100%] bg-transparent rounded-lg p-4">
-          <Chart options={options} series={series} type="radialBar" />
-        </div>
-      <div className="mt-4 flex flex-col items-start text-[#ececec] text-center text-lg ">
-        <p>
-          Value: 
+      <div className="h-[350px] w-[100%] bg-transparent rounded-lg p-4">
+        <Chart options={options} series={series} type="radialBar" />
+       
+      </div>
+      <div className="mt-4 flex flex-col items-start text-[#ececec] text-justify text-lg pt-0 p-8 overflow-y-scroll mb-4 ">
+      <p className="pt-0 mb-8 text-2xl text-bold text-[#fff]">
+        UPSI percent 
+        (Urban Planning Stability Index percent)
         </p>
         <p>
-          Color Explanation:
+          On the basis of given data and estimated and predicted value we derive a UPSI percent value based on our UPSI algorithm the more the percent the better the cycle for development could be.
+        </p>
+        <p>
+          Factors like Transport network and its connectivity to more and more public amenities, population density and footfall near specific attraction and point of contacts are recorded, recorded and based on them sperate squares are calculated, after cumulating those score we arrive to a final UPSI value for a give piece of land.
         </p>
       </div>
     </div>
@@ -504,7 +519,7 @@ const Report = ({
             </div>
           </div>
           <h1 className="text-[#efefef] text-2xl font-semibold">
-          {report?.[activeTab][0].title} Graphs 
+            {report?.[activeTab][0].title} Graphs
           </h1>
           <div className="mt-4">
             <Card className="py-4 w-[300px]">
@@ -513,7 +528,7 @@ const Report = ({
                 <h4 className="font-bold text-large">Religious Distribution</h4>
               </CardHeader>
               <CardBody className="overflow-visible py-2">
-                
+
               </CardBody>
             </Card>
           </div>
@@ -534,9 +549,8 @@ const Report = ({
 const Message = ({ message, bot = false }) => {
   return (
     <div
-      className={`flex flex-col gap-2 w-full p-1 ${
-        bot ? "items-start" : "items-end"
-      }`}
+      className={`flex flex-col gap-2 w-full p-1 ${bot ? "items-start" : "items-end"
+        }`}
     >
       <div className="flex flex-col p-5 bg-[#3f3f46] w-max rounded-lg mx-5 max-w-[60%]">
         <p className="text-[#efefef] text-lg font-semibold tracking-wide flex-wrap whitespace-pre-line">
@@ -768,16 +782,16 @@ const ExportData = ({ exportRef }) => {
                 size="lg"
                 isRequired
               />
-            <Button
-              color="warning"
-              className="w-[20vw] mt-5"
-              size="lg"
-              onClick={() => navigate("/")}
-            >
-              <h1 className="text-xl font-semibold">
-                Export Data
-              </h1>
-            </Button>
+              <Button
+                color="warning"
+                className="w-[20vw] mt-5"
+                size="lg"
+                onClick={() => navigate("/")}
+              >
+                <h1 className="text-xl font-semibold">
+                  Export Data
+                </h1>
+              </Button>
             </div>
           </div>
           <div className="h-full w-[20vw] flex justify-center items-center">
@@ -849,7 +863,7 @@ const Home = () => {
       />
       <Metric />
       <Map {...mapOptions} activeMap={activeMap} height=" h-screen" />
-      <Report
+      {/* <Report
         reportRef={reportRef}
         activeTab={activeTab}
         activeParam={activeParam}
@@ -861,7 +875,7 @@ const Home = () => {
       <BhoomiChat chatRef={chatRef} />
       <Update updateRef={updateRef} />
       <ExportData exportRef={exportRef} />
-      <ContactCard contactRef={contactRef} />
+      <ContactCard contactRef={contactRef} /> */}
     </>
   );
 };
