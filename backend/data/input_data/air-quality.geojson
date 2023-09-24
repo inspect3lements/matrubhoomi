@@ -1,0 +1,1476 @@
+{
+    "fields": [
+        {
+            "id": "a",
+            "label": "City Name",
+            "type": "string"
+        },
+        {
+            "id": "b",
+            "label": "Month -Year",
+            "type": "string"
+        },
+        {
+            "id": "c",
+            "label": "Monthly mean/average concentration - PM2.5",
+            "type": "string"
+        },
+        {
+            "id": "d",
+            "label": "Monthly mean concentration - PM10",
+            "type": "string"
+        },
+        {
+            "id": "e",
+            "label": "Monthly mean concentration - NO2",
+            "type": "string"
+        },
+        {
+            "id": "f",
+            "label": "Monthly mean concentration - SO2",
+            "type": "string"
+        },
+        {
+            "id": "g",
+            "label": "Monthly mean concentration - O3",
+            "type": "string"
+        },
+        {
+            "id": "h",
+            "label": "No of AQM Sensors / Environmental sensors deployed",
+            "type": "string"
+        }
+    ],
+    "data": [
+        [
+            "Chandigarh",
+            "Dec-20",
+            "52.14",
+            "106.54",
+            "31.63",
+            "8.37",
+            "20.39",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Nov-20",
+            "57.15",
+            "118.24",
+            "31.08",
+            "8.62",
+            "23.47",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Oct-20",
+            "49.27",
+            "120.69",
+            "26.72",
+            "7.63",
+            "34.15",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Sep-20",
+            "31.45",
+            "79.11",
+            "8.2",
+            "5.45",
+            "28.38",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Aug-20",
+            "15.31",
+            "33.9",
+            "9.31",
+            "8.65",
+            "15.03",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Jul-20",
+            "33.04",
+            "79.65",
+            "33.97",
+            "16.05",
+            "29.99",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Jun-20",
+            "39.81",
+            "84.52",
+            "22.69",
+            "19.44",
+            "76.86",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "May-20",
+            "35.88",
+            "127.44",
+            "15.44",
+            "22.74",
+            "73.43",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Apr-20",
+            "25.02",
+            "58.57",
+            "20.58",
+            "16.79",
+            "47.72",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Mar-20",
+            "33.04",
+            "79.65",
+            "33.97",
+            "16.05",
+            "29.99",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Feb-20",
+            "61.63",
+            "138.78",
+            "42.04",
+            "14.57",
+            "29.47",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Jan-20",
+            "73.94",
+            "152.79",
+            "33.82",
+            "16.59",
+            "22.97",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Dec-19",
+            "103.02",
+            "199.74",
+            "35.76",
+            "12.44",
+            "18.2",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Nov-19",
+            "110.26",
+            "207.79",
+            "45.23",
+            "14.72",
+            "32.85",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Oct-19",
+            "107.78",
+            "203.08",
+            "12.2",
+            "19.01",
+            "53.72",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Sep-19",
+            "29.38",
+            "80.09",
+            "4.3",
+            "14.2",
+            "27.02",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Aug-19",
+            "NA",
+            "62.45",
+            "5.05",
+            "4.77",
+            "23.34",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Jul-19",
+            "39.75",
+            "93.54",
+            "7.38",
+            "21.5",
+            "26.24",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Jun-19",
+            "NA",
+            "NA",
+            "NA",
+            "NA",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "May-19",
+            "NA",
+            "NA",
+            "NA",
+            "NA",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Apr-19",
+            "NA",
+            "NA",
+            "NA",
+            "NA",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Mar-19",
+            "NA",
+            "NA",
+            "NA",
+            "NA",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Feb-19",
+            "NA",
+            "NA",
+            "NA",
+            "NA",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh",
+            "Jan-19",
+            "NA",
+            "NA",
+            "NA",
+            "NA",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Dec-18",
+            "122",
+            "191",
+            "50",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Nov-18",
+            "86",
+            "139",
+            "31",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Oct-18",
+            "49",
+            "101",
+            "32",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Sep-18",
+            "34",
+            "64",
+            "21",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Aug-18",
+            "31",
+            "66",
+            "18",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Jul-18",
+            "37",
+            "69",
+            "16",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Jun-18",
+            "56",
+            "193",
+            "20",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "May-18",
+            "42",
+            "131",
+            "21",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Apr-18",
+            "34",
+            "112",
+            "21",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Mar-18",
+            "29",
+            "95",
+            "21",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Feb-18",
+            "41",
+            "108",
+            "23",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Jan-18",
+            "137",
+            "230",
+            "27",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Dec-17",
+            "155",
+            "223",
+            "33",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Nov-17",
+            "137",
+            "206",
+            "41",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Oct-17",
+            "86",
+            "132",
+            "12",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Sep-17",
+            "39",
+            "73",
+            "12",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Aug-17",
+            "26",
+            "56",
+            "10",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Jul-17",
+            "23",
+            "55",
+            "13",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Jun-17",
+            "41",
+            "97",
+            "15",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "May-17",
+            "53",
+            "114",
+            "15",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Apr-17",
+            "53",
+            "114",
+            "18",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Mar-17",
+            "35",
+            "85",
+            "17",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Feb-17",
+            "78",
+            "123",
+            "22",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Industrial area ",
+            "Jan-17",
+            "88",
+            "140",
+            "27",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Dec-18",
+            "78",
+            "126",
+            "33",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Nov-18",
+            "77",
+            "115",
+            "20",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Oct-18",
+            "36",
+            "67",
+            "26",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Sep-18",
+            "29",
+            "56",
+            "18",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Aug-18",
+            "32",
+            "60",
+            "16",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Jul-18",
+            "23",
+            "49",
+            "15",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Jun-18",
+            "42",
+            "122",
+            "14",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "May-18",
+            "44",
+            "118",
+            "15",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Apr-18",
+            "22",
+            "88",
+            "14",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Mar-18",
+            "23",
+            "85",
+            "17",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Feb-18",
+            "43",
+            "95",
+            "15",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Jan-18",
+            "102",
+            "163",
+            "22",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Dec-17",
+            "133",
+            "184",
+            "25",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Nov-17",
+            "106",
+            "172",
+            "28",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Oct-17",
+            "63",
+            "98",
+            "15",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Sep-17",
+            "40",
+            "62",
+            "10",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Aug-17",
+            "25",
+            "51",
+            "9",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Jul-17",
+            "19",
+            "46",
+            "10",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Jun-17",
+            "38",
+            "94",
+            "10",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "May-17",
+            "52",
+            "100",
+            "13",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Apr-17",
+            "45",
+            "103",
+            "15",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Mar-17",
+            "30",
+            "62",
+            "16",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Feb-17",
+            "78",
+            "112",
+            "16",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Sector 17",
+            "Jan-17",
+            "71",
+            "124",
+            "22",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Dec-18",
+            "106",
+            "152",
+            "29",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Nov-18",
+            "79",
+            "125",
+            "21",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Oct-18",
+            "45",
+            "83",
+            "27",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Sep-18",
+            "27",
+            "55",
+            "15",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Aug-18",
+            "32",
+            "60",
+            "16",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Jul-18",
+            "25",
+            "53",
+            "10",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Jun-18",
+            "46",
+            "142",
+            "15",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "May-18",
+            "51",
+            "127",
+            "15",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Apr-18",
+            "26",
+            "100",
+            "13",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Mar-18",
+            "28",
+            "95",
+            "15",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Feb-18",
+            "52",
+            "109",
+            "15",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Jan-18",
+            "107",
+            "167",
+            "22",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Dec-17",
+            "152",
+            "212",
+            "28",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Nov-17",
+            "116",
+            "187",
+            "31",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Oct-17",
+            "75",
+            "108",
+            "17",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Sep-17",
+            "42",
+            "72",
+            "8",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Aug-17",
+            "23",
+            "53",
+            "9",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Jul-17",
+            "19",
+            "48",
+            "10",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Jun-17",
+            "42",
+            "99",
+            "10",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "May-17",
+            "53",
+            "112",
+            "11",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Apr-17",
+            "59",
+            "126",
+            "14",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Mar-17",
+            "43",
+            "75",
+            "15",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Feb-17",
+            "78",
+            "123",
+            "16",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Imtec 39",
+            "Jan-17",
+            "81",
+            "139",
+            "18",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Dec-18",
+            "86",
+            "133",
+            "23",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Nov-18",
+            "74",
+            "98",
+            "24",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Oct-18",
+            "34",
+            "70",
+            "19",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Sep-18",
+            "30",
+            "56",
+            "12",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Aug-18",
+            "28",
+            "59",
+            "10",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Jul-18",
+            "24",
+            "56",
+            "10",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Jun-18",
+            "49",
+            "140",
+            "14",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "May-18",
+            "51",
+            "130",
+            "13",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Apr-18",
+            "26",
+            "99",
+            "9",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Mar-18",
+            "30",
+            "105",
+            "12",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Feb-18",
+            "50",
+            "120",
+            "12",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Jan-18",
+            "116",
+            "173",
+            "15",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Dec-17",
+            "129",
+            "175",
+            "21",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Nov-17",
+            "101",
+            "159",
+            "17",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Oct-17",
+            "56",
+            "111",
+            "16",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Sep-17",
+            "41",
+            "67",
+            "9",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Aug-17",
+            "31",
+            "49",
+            "7",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Jul-17",
+            "21",
+            "53",
+            "9",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Jun-17",
+            "44",
+            "103",
+            "10",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "May-17",
+            "55",
+            "129",
+            "12",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Apr-17",
+            "56",
+            "128",
+            "16",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Mar-17",
+            "40",
+            "61",
+            "14",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Feb-17",
+            "69",
+            "113",
+            "13",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            "Chandigarh Kaimbwala village",
+            "Jan-17",
+            "85",
+            "126",
+            "23",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Dec-18",
+            "85",
+            "131",
+            "27",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Nov-18",
+            "67",
+            "106",
+            "21",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Oct-18",
+            "47",
+            "80",
+            "21",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Sep-18",
+            "25",
+            "53",
+            "14",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Aug-18",
+            "26",
+            "63",
+            "14",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Jul-18",
+            "23",
+            "55",
+            "12",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Jun-18",
+            "55",
+            "192",
+            "12",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "May-18",
+            "36",
+            "109",
+            "13",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Apr-18",
+            "20",
+            "85",
+            "13",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Mar-18",
+            "23",
+            "75",
+            "11",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Feb-18",
+            "40",
+            "88",
+            "12",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Jan-18",
+            "103",
+            "157",
+            "16",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Dec-17",
+            "110",
+            "169",
+            "4",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Nov-17",
+            "105",
+            "158",
+            "22",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Oct-17",
+            "73",
+            "113",
+            "5",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Sep-17",
+            "28",
+            "56",
+            "8",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Aug-17",
+            "22",
+            "45",
+            "8",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Jul-17",
+            "27",
+            "53",
+            "8",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Jun-17",
+            "36",
+            "120",
+            "9",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "May-17",
+            "51",
+            "92",
+            "10",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Apr-17",
+            "43",
+            "98",
+            "13",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Mar-17",
+            "34",
+            "57",
+            "8",
+            "2",
+            "NA",
+            "NA"
+        ],
+        [
+            " Chandigarh Pec 12",
+            "Feb-17",
+            "74",
+            "105",
+            "12",
+            "2",
+            "NA",
+            "NA"
+        ]
+    ]
+}
