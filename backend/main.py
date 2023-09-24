@@ -123,9 +123,20 @@ async def generate_report():
 
 @app.get("/chatbot")
 async def index(inp: str = ''):
+    if inp == '':
+        return "Please enter a query"
     LLM = Llama(model_path=r".\model\llama-2-7b-chat.ggmlv3.q8_0.bin", f16_kv=True, n_gpu_layers=1)
     i = "you are a chatbot named bhoomi chat and your task is to assist them only with queries on urban planning in india. Do not generate a response if the question is unrelated to urban planning,city development, infrastructure, transportation, zoning regulations, sustainable design, and community engagement. return a answer with max 150 words . Q: "+inp+" A: "
     ans = LLM(i)
     return ans["choices"][0]
+
+@app.get("/analytics/road")
+async def index(place: str = ''):
+   if place == '':
+      return "Please enter a query"
+   LLM = Llama(model_path=r".\model\llama-2-7b-chat.ggmlv3.q8_0.bin", f16_kv=True, n_gpu_layers=1)
+   report_input = "give me description of road and pavements in "+place+" in a 200 words paragraph"
+   return LLM(report_input)
+
 if __name__ == "__main__":
    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)

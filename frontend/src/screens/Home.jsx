@@ -656,7 +656,7 @@ const Message = ({ message, bot = false }) => {
         bot ? "items-start" : "items-end"
       }`}
     >
-      <div className="flex flex-col p-5 bg-[#3f3f46] w-max rounded-full mx-4 max-w-[60%]">
+      <div className="flex flex-col p-5 bg-[#3f3f46] w-max rounded-xl mx-4 max-w-[60%]">
         <p className="text-[#efefef] text-lg font-semibold tracking-wide flex-wrap whitespace-pre-line">
           {message}
         </p>
@@ -668,13 +668,12 @@ const Message = ({ message, bot = false }) => {
 const BhoomiChat = ({ chatRef }) => {
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth",block: 'nearest', inline: 'start'  });
   };
   let [messages, setMessages] = useState(["Hello there! I am Bhoomi ChatBot"]);
   let [message, setMessage] = useState("");
   let [loading, setLoading] = useState(false);
   useEffect(() => {
-    if(messages.length > 1)
     scrollToBottom();
   }, [messages]);
   const submit = (e) => {

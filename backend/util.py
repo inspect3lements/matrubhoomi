@@ -64,8 +64,8 @@ def create_ggjson_file():
     data.append(e)
 
     glis['features'] = data
-    # with open('./data.ggjson', 'w') as f:
-    #     json.dump(gg, f)
+    with open('./data.ggjson', 'w') as f:
+        json.dump(glis, f)
     return glis
 
 def area_of_ward(ward_file):
