@@ -1,0 +1,548 @@
+{
+  "fields": [
+    { "id": "a", "label": "City Name", "type": "string" },
+    { "id": "b", "label": "Ward Number", "type": "string" },
+    { "id": "c", "label": "Ward Name", "type": "string" },
+    { "id": "d", "label": "Name of Healthcare facility ", "type": "string" },
+    {
+      "id": "e",
+      "label": "Type of Facility primary healthcare centre (PHC)/dispensary/private clinic/government hospital/private hospital",
+      "type": "string"
+    },
+    { "id": "f", "label": "Latitude", "type": "string" },
+    { "id": "g", "label": "Longitude ", "type": "string" },
+    { "id": "h", "label": "Address", "type": "string" }
+  ],
+  "data": [
+    [
+      "Chandigarh",
+      "3",
+      "Ward 3",
+      "GMSH 16",
+      "District Hospital",
+      "30.75152",
+      "76.78042",
+      "Sector 16"
+    ],
+    [
+      "Chandigarh",
+      "21",
+      "Ward 21",
+      "GMCH 32",
+      "Medical College (For DH & SDH)",
+      "30.7092",
+      "76.78175",
+      "Sector 32"
+    ],
+    [
+      "Chandigarh",
+      "1",
+      "Ward 1",
+      "PGI Chandigarh",
+      "Medical College (For DH & SDH)",
+      "30.76282",
+      "76.7764",
+      "Sector 12"
+    ],
+    [
+      "Chandigarh",
+      "23",
+      "Ward 23",
+      "ESI Hospital Ramdarbar",
+      "ESI Hospital",
+      "30.69742",
+      "76.79753",
+      "Ramdarbar"
+    ],
+    [
+      "Chandigarh",
+      "25",
+      "Ward 25",
+      "Civil Hospital Manimajra",
+      "SDH",
+      "30.71357",
+      "76.84277",
+      "Manimajra"
+    ],
+    [
+      "Chandigarh",
+      "3",
+      "Ward 3",
+      "Civil Hospital Sector 22",
+      "Urban CHC",
+      "30.73272",
+      "76.77113",
+      "Sector 22"
+    ],
+    [
+      "Chandigarh",
+      "14",
+      "Ward 14",
+      "Civil Hospital Sector -45",
+      "Urban CHC",
+      "30.70515",
+      "76.76167",
+      "Sector 45"
+    ],
+    [
+      "Chandigarh",
+      "15",
+      "Ward 15",
+      "HWC 35",
+      "HWC (For PHC & SC)",
+      "30.72342",
+      "76.76225",
+      "Sector 35"
+    ],
+    [
+      "Chandigarh",
+      "8",
+      "Ward 8",
+      "HWC-37",
+      "HWC (For PHC & SC)",
+      "30.73608",
+      "76.7493",
+      "Sector 37"
+    ],
+    [
+      "Chandigarh",
+      "8",
+      "Ward 8",
+      "HWC-38",
+      "HWC (For PHC & SC)",
+      "30.74255",
+      "76.74608",
+      "Sector 38"
+    ],
+    [
+      "Chandigarh",
+      "9",
+      "Ward 9",
+      "HWC-40",
+      "HWC (For PHC & SC)",
+      "30.73667",
+      "76.73415",
+      "Sector 40"
+    ],
+    [
+      "Chandigarh",
+      "10",
+      "Ward 10",
+      "HWC-42",
+      "HWC (For PHC & SC)",
+      "30.72603",
+      "76.74893",
+      "Sector 42"
+    ],
+    [
+      "Chandigarh",
+      "22",
+      "Ward 22",
+      "HWC - 47",
+      "HWC (For PHC & SC)",
+      "30.69522",
+      "76.76525",
+      "Sector 47"
+    ],
+    [
+      "Chandigarh",
+      "13",
+      "Ward 13",
+      "H.W.C-49",
+      "HWC (For PHC & SC)",
+      "30.69296",
+      "76.75242",
+      "Sector 49"
+    ],
+    [
+      "Chandigarh",
+      "18",
+      "Ward 18",
+      "HWC AD 28",
+      "HWC (For PHC & SC)",
+      "30.71673",
+      "76.8057",
+      "Sector 28"
+    ],
+    [
+      "Chandigarh",
+      "10000018",
+      "Village",
+      "HWC Behlana",
+      "HWC (For PHC & SC)",
+      "30.67952",
+      "76.80045",
+      "Village - Behlana"
+    ],
+    [
+      "Chandigarh",
+      "20",
+      "Ward 20",
+      "HWC CITCO",
+      "HWC (For PHC & SC)",
+      "30.70863",
+      "76.80477",
+      "Industrial Area"
+    ],
+    [
+      "Chandigarh",
+      "6",
+      "Ward 6",
+      "HWC Dadumajra",
+      "HWC (For PHC & SC)",
+      "30.75523",
+      "76.73913",
+      "Dadumajra"
+    ],
+    [
+      "Chandigarh",
+      "25",
+      "Ward 25",
+      "HWC Daria",
+      "HWC (For PHC & SC)",
+      "30.69645",
+      "76.81242",
+      "Village - Daria"
+    ],
+    [
+      "Chandigarh",
+      "5",
+      "Ward 5",
+      "HWC Dhanas",
+      "HWC (For PHC & SC)",
+      "30.76365",
+      "76.75278",
+      "Village - Dhanas"
+    ],
+    [
+      "Chandigarh",
+      "7",
+      "Ward 7",
+      "HWC EWS Maloya",
+      "HWC (For PHC & SC)",
+      "30.45",
+      "76.43",
+      "Village - Maloya"
+    ],
+    [
+      "Chandigarh",
+      "23",
+      "Ward 23",
+      "HWC Hallomajra",
+      "HWC (For PHC & SC)",
+      "30.69215",
+      "76.80018",
+      "Village - Hallo majra"
+    ],
+    [
+      "Chandigarh",
+      "10000020",
+      "Village",
+      "HWC Kaimbwala",
+      "HWC (For PHC & SC)",
+      "30.75602",
+      "76.82292",
+      "Village - Kaimbwala"
+    ],
+    [
+      "Chandigarh",
+      "12",
+      "Ward 12",
+      "HWC-Kajheri",
+      "HWC (For PHC & SC)",
+      "30.71592",
+      "76.73675",
+      "Villaje - kajheri"
+    ],
+    [
+      "Chandigarh",
+      "7",
+      "Ward 7",
+      "HWC  Maloya",
+      "HWC (For PHC & SC)",
+      "30.7527",
+      "76.71767",
+      "Village - Maloya"
+    ],
+    [
+      "Chandigarh",
+      "24",
+      "Ward 24",
+      "HWC Mauli Jagran",
+      "HWC (For PHC & SC)",
+      "30.69823",
+      "76.82937",
+      "Mauli jagran"
+    ],
+    [
+      "Chandigarh",
+      "24",
+      "Ward 24",
+      "HWC Mauli village",
+      "HWC (For PHC & SC)",
+      "30.73237",
+      "76.78178",
+      "Mauli Village"
+    ],
+    [
+      "Chandigarh",
+      "25",
+      "Ward 25",
+      "HWC Modren Complex",
+      "HWC (For PHC & SC)",
+      "30.71333",
+      "76.82678",
+      "Sector - 13, Manimajra"
+    ],
+    [
+      "Chandigarh",
+      "5",
+      "Ward 5",
+      "HWC New Resettelment Colony Dhanas",
+      "HWC (For PHC & SC)",
+      "30.7728",
+      "76.74852",
+      "NRC - Dhanas"
+    ],
+    [
+      "Chandigarh",
+      "23",
+      "Ward 23",
+      "HWC Ram Darbar",
+      "HWC (For PHC & SC)",
+      "30.69242",
+      "76.78918",
+      "Village - Ramdarbar"
+    ],
+    [
+      "Chandigarh",
+      "10000004",
+      "Village",
+      "HWC Sarangpur",
+      "HWC (For PHC & SC)",
+      "30.78035",
+      "76.7567",
+      "Village - Sarangpur"
+    ],
+    [
+      "Chandigarh",
+      "1",
+      "Ward 1",
+      "HWC Sector 11",
+      "HWC (For PHC & SC)",
+      "30.7587",
+      "76.78235",
+      "Sector 11"
+    ],
+    [
+      "Chandigarh",
+      "17",
+      "Ward 17",
+      "HWC Sector 19",
+      "HWC (For PHC & SC)",
+      "30.7317",
+      "76.79452",
+      "Sector 19"
+    ],
+    [
+      "Chandigarh",
+      "16",
+      "Ward 16",
+      "HWC Sector 20",
+      "HWC (For PHC & SC)",
+      "30.71602",
+      "76.79123",
+      "Sector 20"
+    ],
+    [
+      "Chandigarh",
+      "4",
+      "Ward 4",
+      "HWC Sector  23",
+      "HWC (For PHC & SC)",
+      "30.73588",
+      "76.76305",
+      "Sector 23"
+    ],
+    [
+      "Chandigarh",
+      "4",
+      "Ward 4",
+      "HWC Sector 24",
+      "HWC (For PHC & SC)",
+      "30.74743",
+      "76.76375",
+      "Sector 24"
+    ],
+    [
+      "Chandigarh",
+      "19",
+      "Ward 19",
+      "HWC Sector 26",
+      "HWC (For PHC & SC)",
+      "30.7224",
+      "76.81028",
+      "Sector 26"
+    ],
+    [
+      "Chandigarh",
+      "18",
+      "Ward 18",
+      "HWC sector 27",
+      "HWC (For PHC & SC)",
+      "30.72397",
+      "76.79913",
+      "Sector 27"
+    ],
+    [
+      "Chandigarh",
+      "16",
+      "Ward 16",
+      "HWC sector 33",
+      "HWC (For PHC & SC)",
+      "30.71557",
+      "76.76817",
+      "Sector 33"
+    ],
+    [
+      "Chandigarh",
+      "13",
+      "Ward 13",
+      "HWC Sector 50",
+      "HWC (For PHC & SC)",
+      "30.73237",
+      "76.78178",
+      "Sector 50"
+    ],
+    [
+      "Chandigarh",
+      "1",
+      "Ward 1",
+      "HWC Sector 8",
+      "HWC (For PHC & SC)",
+      "30.74105",
+      "76.79807",
+      "Sector 8"
+    ],
+    [
+      "Chandigarh",
+      "19",
+      "Ward 19",
+      "Police Hospital 26",
+      "PHC-CD",
+      "30.7218",
+      "76.81088",
+      "Sector 26"
+    ],
+    [
+      "Chandigarh",
+      "5",
+      "Ward 5",
+      "Public Health Dispensary",
+      "PHC-CD",
+      "30.74056",
+      "76.75933",
+      "Sector 25"
+    ],
+    [
+      "Chandigarh",
+      "11",
+      "Ward 11",
+      "RHTC Palsora",
+      "PHC-CD",
+      "30.73442",
+      "76.7178",
+      "Village - Palsora"
+    ],
+    [
+      "Chandigarh",
+      "26",
+      "Ward 26",
+      "UHTC Indira Colony",
+      "PHC-CD",
+      "30.72383",
+      "76.83998",
+      "Indria colony"
+    ],
+    [
+      "Chandigarh",
+      "15",
+      "Ward 15",
+      "Urban Heath Training centre 44",
+      "PHC-CD",
+      "30.71168",
+      "76.75798",
+      "Sector 44"
+    ],
+    [
+      "Chandigarh",
+      "1",
+      "Ward 1",
+      "CD 9",
+      "PHC-CD",
+      "30.74955",
+      "76.78918",
+      "Sector 9"
+    ],
+    [
+      "Chandigarh",
+      "12",
+      "Ward 12",
+      "CD District Court Sector 43",
+      "PHC-CD",
+      "30.73237",
+      "76.78178",
+      "Sector 43"
+    ],
+    [
+      "Chandigarh",
+      "1",
+      "Ward 1",
+      "CD Punjab & Haryana High Court",
+      "PHC-CD",
+      "30.75468",
+      "76.80225",
+      "Sector 1"
+    ],
+    [
+      "Chandigarh",
+      "20",
+      "Ward 20",
+      "ESI 29",
+      "PHC-CD",
+      "30.71108",
+      "76.79067",
+      "Sector 29"
+    ],
+    [
+      "Chandigarh",
+      "Ward no. 9",
+      "Ward 9",
+      "Civil Dispensary ",
+      "Dispensary",
+      "30.7449",
+      "76.73035",
+      "Civil Dispensary, Sector 39, Chandigarh."
+    ],
+    [
+      "Chandigarh",
+      "Ward no. 13",
+      "Ward 13",
+      "Civil Dispensary",
+      "Dispensary",
+      "30.69599",
+      "76.753548",
+      "Civil Dispensary, Sector 49, Chandigarh."
+    ],
+    [
+      "Chandigarh",
+      "Ward no. 13",
+      "Ward 13",
+      "Civil Dispensary",
+      "Dispensary",
+      "30.70054",
+      "76.74681",
+      "Civil Dispensary, Sector 50, Chandigarh."
+    ]
+  ]
+}
