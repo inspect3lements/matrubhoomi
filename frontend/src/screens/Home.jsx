@@ -14,8 +14,10 @@ import {
 } from "@nextui-org/react";
 import boundaries from "../assets/boundaries.json";
 import sectors from "../assets/sectors.json";
+import { useNavigate } from "react-router-dom";
 import wards from "../assets/wards.json";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import Chart from 'react-apexcharts'
 import report from "../assets/report.json";
 
 const tabs = [
@@ -260,6 +262,7 @@ const SideNav = ({
   exportRef,
   contactRef,
 }) => {
+  const navigate = useNavigate();
   const scrollToSection = (sectionRef) => {
     if (sectionRef.current) {
       sectionRef.current.scrollIntoView({ behavior: "smooth" });
@@ -303,6 +306,7 @@ const SideNav = ({
         color="error"
         className="w-[75%] mb-10 border-1 border-[#f31260]"
         size="lg"
+        onClick={() => navigate("/login")}
       >
         <h1 className="text-[#f31260] text-xl font-semibold tracking-wide">
           Logout
@@ -311,6 +315,109 @@ const SideNav = ({
     </div>
   );
 };
+
+const Metric =({})=>{
+  const getGradientColors = (value) => {
+    if (value < 35) {
+      return ['#F3123B']; // Reddish color for values less than 35
+    } else if (value >= 35 && value <= 75) {
+      return ['#F5BD33']; // Yellowish color for values between 35 and 75
+    } else {
+      return ['#17C964']; // Green color for values above 75
+    }
+  };
+  
+  const series = [85]; 
+  const gradientColors = getGradientColors(series);
+
+  const options = {
+    series: [75],
+    chart: {
+      height: 350,
+      type: 'radialBar',
+      toolbar: {
+        show: true
+      }
+    },
+    plotOptions: {
+      radialBar: {
+        startAngle: -135,
+        endAngle: 225,
+        hollow: {
+          margin: 0,
+          size: '70%',
+          background: '#27272a',
+          image: undefined,
+          imageOffsetX: 0,
+          imageOffsetY: 0,
+          position: 'front',
+          dropShadow: {
+            enabled: true,
+            top: 3,
+            left: 0,
+            blur: 4,
+            opacity: 0.24
+          }
+        },
+        track: {
+          background: '#27272a',
+          strokeWidth: '50%',
+          margin: 0,
+          dropShadow: {
+            enabled: false,
+            top: -3,
+            left: 0,
+            blur: 4,
+            opacity: 0.35
+          }
+        },
+        dataLabels: {
+          show: true,
+          name: {
+            offsetY: -10,
+            show: true,
+            color: '#ececec',
+            fontSize: '17px'
+          },
+          value: {
+            formatter: function(val) {
+              return parseInt(val);
+            },
+            color: '#fff',
+            fontSize: '36px',
+            show: true,
+          }
+        }
+      }
+    },
+    fill: {
+      type: 'solid',
+      colors: gradientColors,
+    },
+    stroke: {
+      lineCap: 'round'
+    },
+    labels: ['Percent'],
+  };
+
+
+  return(
+    <div className="h-[56%] w-[20%] absolute right-0 top-[20%] bg-[#27272a] shadow-lg m-4 rounded-2xl flex flex-col justify-start items-center gap-5">
+       <div className="h-[350px] w-[100%] bg-transparent rounded-lg p-4">
+          <Chart options={options} series={series} type="radialBar" />
+        </div>
+      <div className="mt-4 flex flex-col items-start text-[#ececec] text-center text-lg ">
+        <p>
+          Value: 
+        </p>
+        <p>
+          Color Explanation:
+        </p>
+      </div>
+    </div>
+  )
+}
+
 
 const Report = ({
   reportRef,
@@ -807,6 +914,7 @@ const Home = () => {
         exportRef={exportRef}
         contactRef={contactRef}
       />
+      <Metric />
       <Map {...mapOptions} activeMap={activeMap} height=" h-screen" />
       <Report
         reportRef={reportRef}
