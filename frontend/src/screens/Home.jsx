@@ -22,7 +22,7 @@ import railways from "../assets/railway-line.json";
 import roads from "../assets/highway-line.json";
 
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import Chart from 'react-apexcharts'
+import Chart from "react-apexcharts";
 import report from "../assets/report.json";
 
 const tabs = [
@@ -393,28 +393,31 @@ const SideNav = ({
   );
 };
 
-const Metric =({})=>{
+const Metric = ({}) => {
+  const randomValue = Math.floor(Math.random() * (83 - 68 + 1)) + 68;
+
   const getGradientColors = (value) => {
     if (value < 35) {
-      return ['#F3123B']; // Reddish color for values less than 35
+      return ["#F3123B"];
     } else if (value >= 35 && value <= 75) {
-      return ['#F5BD33']; // Yellowish color for values between 35 and 75
+      return ["#F5BD33"];
     } else {
-      return ['#17C964']; // Green color for values above 75
+      return ["#17C964"];
     }
   };
-  
-  const series = [85]; 
-  const gradientColors = getGradientColors(series);
+
+  const series = [randomValue];
+
+  const gradientColors = getGradientColors(randomValue);
 
   const options = {
     series: [75],
     chart: {
-      height: 350,
-      type: 'radialBar',
+      height: 150,
+      type: "radialBar",
       toolbar: {
-        show: true
-      }
+        show: true,
+      },
     },
     plotOptions: {
       radialBar: {
@@ -422,79 +425,69 @@ const Metric =({})=>{
         endAngle: 225,
         hollow: {
           margin: 0,
-          size: '70%',
-          background: '#27272a',
+          size: "70%",
+          background: "#27272a",
           image: undefined,
           imageOffsetX: 0,
           imageOffsetY: 0,
-          position: 'front',
+          position: "front",
           dropShadow: {
             enabled: true,
             top: 3,
             left: 0,
             blur: 4,
-            opacity: 0.24
-          }
+            opacity: 0.24,
+          },
         },
         track: {
-          background: '#27272a',
-          strokeWidth: '50%',
+          background: "#27272a",
+          strokeWidth: "50%",
           margin: 0,
           dropShadow: {
             enabled: false,
             top: -3,
             left: 0,
             blur: 4,
-            opacity: 0.35
-          }
+            opacity: 0.35,
+          },
         },
         dataLabels: {
           show: true,
           name: {
             offsetY: -10,
             show: true,
-            color: '#ececec',
-            fontSize: '17px'
+            color: "#ececec",
+            fontSize: "17px",
           },
           value: {
-            formatter: function(val) {
+            formatter: function (val) {
               return parseInt(val);
             },
-            color: '#fff',
-            fontSize: '36px',
+            color: "#fff",
+            fontSize: "40px",
             show: true,
-          }
-        }
-      }
+          },
+        },
+      },
     },
     fill: {
-      type: 'solid',
+      type: "solid",
       colors: gradientColors,
     },
     stroke: {
-      lineCap: 'round'
+      lineCap: "round",
     },
-    labels: ['Percent'],
+    labels: ["USPI Score"],
   };
 
-
-  return(
-    <div className="h-[56%] w-[20%] absolute right-0 top-[20%] bg-[#27272a] shadow-lg m-4 rounded-2xl flex flex-col justify-start items-center gap-5">
-       <div className="h-[350px] w-[100%] bg-transparent rounded-lg p-4">
-          <Chart options={options} series={series} type="radialBar" />
-        </div>
-      <div className="mt-4 flex flex-col items-start text-[#ececec] text-center text-lg ">
-        <p>
-          Value: 
-        </p>
-        <p>
-          Color Explanation:
-        </p>
+  return (
+    <div className="h-auto w-[15%] absolute right-0 bottom-2 bg-[#27272a] shadow-lg m-4 rounded-2xl flex flex-col justify-start items-center gap-5">
+      <div className="h-full w-[100%] bg-transparent rounded-lg p-4">
+        <Chart options={options} series={series} type="radialBar" />
       </div>
     </div>
-  )
-}
-
+  );
+};
 
 const Report = ({
   reportRef,
