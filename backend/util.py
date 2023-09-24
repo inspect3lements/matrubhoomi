@@ -186,7 +186,7 @@ def get_model_prediction(ward_wise_data, ward_file):
     for i in ward['features']:
         ward_poly = Polygon(i['geometry']['coordinates'])
         ar = area(ward_poly)
-        input_df = pd.DataFrame([{'area':ar,	'accessibility':5}])
+        input_df = pd.DataFrame([{'area':ar,'accessibility':5}])
         print(model.predict(input_df))
     return ward_wise_data
 
@@ -333,5 +333,5 @@ if __name__ == "__main__":
     # ward_data = get_number_of_poi_point(ward_data,'./data/input_data/boundary-polygon-lvl10.json', './data/input_data/poi_point.geojson')
     # ward_data = get_road_info(ward_data,'./data/input_data/highway-line.geojson')
     # ward_data = air_quality(ward_data,'./data/input_data/datafile.csv')
-    # get_model_prediction(ward_data, './data/input_data/boundary-polygon-lvl10.json')
+    get_model_prediction(ward_data, './data/input_data/boundary-polygon-lvl10.json')
     print(ward_data)
